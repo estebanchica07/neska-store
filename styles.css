@@ -75,6 +75,7 @@ nav {
 
 .navbar-shopping-cart {
   position: relative;
+  cursor: pointer;
 }
 .navbar-shopping-cart div {
   width: 16px;
@@ -133,6 +134,7 @@ nav {
 
 /*Menu en Mobile*/
 .mobile-menu {
+  background-color: var(--white);
   position: absolute;
   top: 60px;
   padding: 24px;
@@ -165,6 +167,7 @@ nav {
 
 /*Aside Carrito de Compras*/
 .product-detail {
+  background-color: var(--white);
   width: 360px;
   padding: 0 24px;
   box-sizing: border-box;
