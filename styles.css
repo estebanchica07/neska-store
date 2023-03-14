@@ -1,3 +1,5 @@
+/*General*/
+
 :root {
   --white: #ffffff;
   --black: #000000;
@@ -13,6 +15,7 @@ body {
   font-family: "Quicksand", sans-serif;
 }
 
+/*Navbar general*/
 .inactive {
   display: none;
 }
@@ -57,16 +60,17 @@ nav {
   border: 1px solid var(--hospital-green);
   color: var(--hospital-green);
 }
+
 .navbar-email {
   color: var(--very-light-pink);
   font-size: var(--sm);
   margin-right: 12px;
   user-select: none;
+  cursor: pointer;
 }
 
 .navbar-email:hover {
   color: var(--hospital-green);
-  cursor: pointer;
 }
 
 .navbar-shopping-cart {
@@ -86,6 +90,8 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
+/*Menu Desktop*/
 
 .desktop-menu {
   position: absolute;
@@ -125,6 +131,38 @@ nav {
   display: inline-block;
 }
 
+/*Menu en Mobile*/
+.mobile-menu {
+  position: absolute;
+  top: 60px;
+  padding: 24px;
+}
+.mobile-menu a {
+  text-decoration: none;
+  color: var(--black);
+  font-weight: bold;
+  /* margin-bottom: 24px; */
+}
+.mobile-menu ul {
+  padding: 0;
+  margin: 24px 0 0;
+  list-style: none;
+}
+.mobile-menu ul:nth-child(1) {
+  border-bottom: 1px solid var(--very-light-pink);
+}
+.mobile-menu ul li {
+  margin-bottom: 24px;
+}
+.email {
+  font-size: var(--sm);
+  font-weight: 300 !important;
+}
+.sign-out {
+  font-size: var(--sm);
+  color: var(--hospital-green) !important;
+}
+
 @media (max-width: 640px) {
   .menu {
     display: block;
@@ -133,6 +171,14 @@ nav {
     display: none;
   }
   .navbar-email {
+    display: none;
+  }
+  .desktop-menu {
+    display: none;
+  }
+}
+@media (min-width: 640px) {
+  .mobile-menu {
     display: none;
   }
 }
