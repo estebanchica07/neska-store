@@ -3,13 +3,17 @@ const desktopMenu = document.querySelector(".desktop-menu");
 const botonMenu = document.querySelector(".menu");
 const mobileMenu = document.querySelector(".mobile-menu");
 
-cuentaEmail.addEventListener("click", switchMenu);
-botonMenu.addEventListener("click", appearMenu);
+cuentaEmail.addEventListener("click", () => toggleElement(desktopMenu));
+botonMenu.addEventListener("click", () => toggleElement(mobileMenu));
 
-function switchMenu() {
-  desktopMenu.classList.toggle("inactive");
-}
+const toggleElement = (e) => {
+  e.classList.toggle("inactive");
+};
 
-function appearMenu() {
-  mobileMenu.classList.toggle("inactive");
-}
+// function switchMenu() {
+//   desktopMenu.classList.toggle("inactive");
+// }
+
+// function appearMenu() {
+//   mobileMenu.classList.toggle("inactive");
+// }
