@@ -95,40 +95,44 @@ productList.push({
   image: "./images/277.jpeg",
 });
 
-for (product of productList) {
-  const productCard = document.createElement("div");
-  productCard.classList.add("product-card");
+function renderproducts(arr) {
+  for (product of arr) {
+    const productCard = document.createElement("div");
+    productCard.classList.add("product-card");
 
-  const productImg = document.createElement("img");
-  productImg.setAttribute("src", product.image);
+    const productImg = document.createElement("img");
+    productImg.setAttribute("src", product.image);
 
-  const productInfo = document.createElement("div");
-  productInfo.classList.add("product-info");
+    const productInfo = document.createElement("div");
+    productInfo.classList.add("product-info");
 
-  const productInfoDiv = document.createElement("div");
+    const productInfoDiv = document.createElement("div");
 
-  const productPrice = document.createElement("p");
-  productPrice.innerHTML = `$ ${product.price}`;
+    const productPrice = document.createElement("p");
+    productPrice.innerHTML = `$ ${product.price}`;
 
-  const productName = document.createElement("p");
-  productName.innerHTML = `$ ${product.name}`;
+    const productName = document.createElement("p");
+    productName.innerHTML = `$ ${product.name}`;
 
-  productInfoDiv.appendChild(productPrice);
-  productInfoDiv.appendChild(productName);
+    productInfoDiv.appendChild(productPrice);
+    productInfoDiv.appendChild(productName);
 
-  const productFigure = document.createElement("figure");
-  const imgCart = document.createElement("img");
+    const productFigure = document.createElement("figure");
+    const imgCart = document.createElement("img");
 
-  imgCart.setAttribute("src", "./icons/bt_add_to_cart.svg");
-  imgCart.setAttribute("alt", "");
+    imgCart.setAttribute("src", "./icons/bt_add_to_cart.svg");
+    imgCart.setAttribute("alt", "");
 
-  productFigure.appendChild(imgCart);
+    productFigure.appendChild(imgCart);
 
-  productInfo.appendChild(productInfoDiv);
-  productInfo.appendChild(productFigure);
+    productInfo.appendChild(productInfoDiv);
+    productInfo.appendChild(productFigure);
 
-  productCard.appendChild(productImg);
-  productCard.appendChild(productInfo);
+    productCard.appendChild(productImg);
+    productCard.appendChild(productInfo);
 
-  cardsContainer.appendChild(productCard);
+    cardsContainer.appendChild(productCard);
+  }
 }
+
+renderproducts(productList);
