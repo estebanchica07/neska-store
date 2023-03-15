@@ -95,6 +95,11 @@ productList.push({
   image: "./images/277.jpeg",
 });
 
+function formatoMoneda(valor) {
+  let convertirMoneda = `$ ${valor.toLocaleString()}`;
+  return convertirMoneda;
+}
+
 function renderproducts(arr) {
   for (product of arr) {
     const productCard = document.createElement("div");
@@ -109,10 +114,10 @@ function renderproducts(arr) {
     const productInfoDiv = document.createElement("div");
 
     const productPrice = document.createElement("p");
-    productPrice.innerHTML = `$ ${product.price}`;
+    productPrice.innerHTML = `${formatoMoneda(product.price)}`;
 
     const productName = document.createElement("p");
-    productName.innerHTML = `$ ${product.name}`;
+    productName.innerHTML = `${product.name}`;
 
     productInfoDiv.appendChild(productPrice);
     productInfoDiv.appendChild(productName);
