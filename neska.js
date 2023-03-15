@@ -101,43 +101,23 @@ function formatoMoneda(valor) {
 }
 
 function renderproducts(arr) {
-  for (product of arr) {
-    const productCard = document.createElement("div");
-    productCard.classList.add("product-card");
-
-    const productImg = document.createElement("img");
-    productImg.setAttribute("src", product.image);
-
-    const productInfo = document.createElement("div");
-    productInfo.classList.add("product-info");
-
-    const productInfoDiv = document.createElement("div");
-
-    const productPrice = document.createElement("p");
-    productPrice.innerHTML = `${formatoMoneda(product.price)}`;
-
-    const productName = document.createElement("p");
-    productName.innerHTML = `${product.name}`;
-
-    productInfoDiv.appendChild(productPrice);
-    productInfoDiv.appendChild(productName);
-
-    const productFigure = document.createElement("figure");
-    const imgCart = document.createElement("img");
-
-    imgCart.setAttribute("src", "./icons/bt_add_to_cart.svg");
-    imgCart.setAttribute("alt", "");
-
-    productFigure.appendChild(imgCart);
-
-    productInfo.appendChild(productInfoDiv);
-    productInfo.appendChild(productFigure);
-
-    productCard.appendChild(productImg);
-    productCard.appendChild(productInfo);
-
-    cardsContainer.appendChild(productCard);
-  }
+  arr.forEach((product) => {
+    tarjetaProducto = `
+      <div class="product-card">
+        <img src="${product.image}" alt="">
+        <div class="product-info">
+          <div>
+            <p>${formatoMoneda(product.price)}</p>
+            <p>${product.name}</p>
+          </div>
+          <figure>
+            <img src="./icons/bt_add_to_cart.svg" alt="">
+          </figure>
+        </div>
+      </div>
+      `;
+    cardsContainer.innerHTML += tarjetaProducto;
+  });
 }
 
 renderproducts(productList);
