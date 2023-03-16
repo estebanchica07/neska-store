@@ -2,24 +2,26 @@ const cuentaEmail = document.querySelector(".navbar-email");
 const desktopMenu = document.querySelector(".desktop-menu");
 const botonMenu = document.querySelector(".menu");
 const mobileMenu = document.querySelector(".mobile-menu");
-const myOrder = document.querySelector(".product-detail");
+const myOrder = document.querySelector("#shoppingCartContainer");
 const cartBoton = document.querySelector(".navbar-shopping-cart");
 const cardsContainer = document.querySelector(".cards-container");
+const viewProduct = document.querySelector("#productDetail");
 
 cuentaEmail.addEventListener("click", () =>
-  abrirCerrar(desktopMenu, myOrder, mobileMenu)
+  abrirCerrar(desktopMenu, myOrder, viewProduct, mobileMenu)
 );
 botonMenu.addEventListener("click", () =>
-  abrirCerrar(mobileMenu, myOrder, desktopMenu)
+  abrirCerrar(mobileMenu, myOrder, viewProduct, desktopMenu)
 );
 cartBoton.addEventListener("click", () =>
-  abrirCerrar(myOrder, mobileMenu, desktopMenu)
+  abrirCerrar(myOrder, mobileMenu, desktopMenu, viewProduct)
 );
 
-const abrirCerrar = function (e, m, g) {
+const abrirCerrar = function (e, m, g, k) {
   e.classList.toggle("inactive");
   m.classList.add("inactive");
   g.classList.add("inactive");
+  k.classList.add("inactive");
 };
 
 const productList = [];
@@ -100,7 +102,7 @@ function formatoMoneda(valor) {
   return convertirMoneda;
 }
 
-function renderproducts(arr) {
+function renderProducts(arr) {
   arr.forEach((product) => {
     tarjetaProducto = `
       <div class="product-card">
@@ -120,4 +122,4 @@ function renderproducts(arr) {
   });
 }
 
-renderproducts(productList);
+renderProducts(productList);
