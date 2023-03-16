@@ -6,6 +6,8 @@ const myOrder = document.querySelector("#shoppingCartContainer");
 const cartBoton = document.querySelector(".navbar-shopping-cart");
 const cardsContainer = document.querySelector(".cards-container");
 const viewProduct = document.querySelector("#productDetail");
+const closeViewProduct = document.querySelector(".product-detail-close");
+let productImageList;
 
 cuentaEmail.addEventListener("click", () =>
   abrirCerrar(desktopMenu, myOrder, viewProduct, mobileMenu)
@@ -16,6 +18,16 @@ botonMenu.addEventListener("click", () =>
 cartBoton.addEventListener("click", () =>
   abrirCerrar(myOrder, mobileMenu, desktopMenu, viewProduct)
 );
+closeViewProduct.addEventListener("click", () =>
+  abrirCerrar(viewProduct, mobileMenu, desktopMenu, myOrder)
+);
+
+const abrir = function (c, k, l, o) {
+  c.classList.remove("inactive");
+  k.classList.add("inactive");
+  l.classList.add("inactive");
+  o.classList.add("inactive");
+};
 
 const abrirCerrar = function (e, m, g, k) {
   e.classList.toggle("inactive");
@@ -106,7 +118,7 @@ function renderProducts(arr) {
   arr.forEach((product) => {
     tarjetaProducto = `
       <div class="product-card">
-        <img src="${product.image}" alt="">
+        <img src="${product.image}" class="productImage" alt="">
         <div class="product-info">
           <div>
             <p>${formatoMoneda(product.price)}</p>
@@ -120,6 +132,22 @@ function renderProducts(arr) {
       `;
     cardsContainer.innerHTML += tarjetaProducto;
   });
+  productImageList = document.getElementsByClassName("productImage");
+  for (let i = 0; i < productImageList.length; i++) {
+    productImageList[i].addEventListener("click", () =>
+      abrir(viewProduct, desktopMenu, myOrder, mobileMenu)
+    );
+  }
+
+  // productCards = document.getElementsByClassName("productImage");
+  // productCards = document.querySelectorAll(".productImage");
+  // productCards.forEach((productCard) => {
+  //   productCard.addEventListener("click", () => console.log("Hola"));
+  //});
 }
 
 renderProducts(productList);
+
+//productCards.addEventListener("click", () => console.log("Hola"));
+//for (i = 0; i <= productCards.length; i++) {
+//i.addEventListener("click", () => console.log("Hola"));
