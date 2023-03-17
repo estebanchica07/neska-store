@@ -6,9 +6,10 @@ const myOrder = document.querySelector("#shoppingCartContainer");
 const cartBoton = document.querySelector(".navbar-shopping-cart");
 const cardsContainer = document.querySelector(".cards-container");
 const viewProduct = document.querySelector("#productDetail");
-const closeViewProduct = document.querySelector(".product-detail-close");
-const cerrarMyorder = document.querySelector(".close-my-order");
 
+const cerrarMyorder = document.querySelector(".close-my-order");
+let vistasPreview = [];
+let closeViewProduct;
 let productImageList;
 
 cuentaEmail.addEventListener("click", () =>
@@ -19,9 +20,6 @@ botonMenu.addEventListener("click", () =>
 );
 cartBoton.addEventListener("click", () =>
   abrirCerrar(myOrder, mobileMenu, desktopMenu, viewProduct, "")
-);
-closeViewProduct.addEventListener("click", () =>
-  abrirCerrar(viewProduct, mobileMenu, desktopMenu, myOrder, "")
 );
 
 cerrarMyorder.addEventListener("click", () =>
@@ -141,22 +139,45 @@ function renderProducts(arr) {
       </div>
       `;
     cardsContainer.innerHTML += tarjetaProducto;
-    VistaDetalle = `
-    
+
+    vistaDetalle = `
+        <div class="product-detail-close">
+          <img src="./icons/icon_close.png" class="product-preview" alt="close">
+        </div>
+        <img src="${product.image}" alt="bike">
+        <div class="product-info-opened">
+          <p>${formatoMoneda(product.price)}</p>
+          <p>${product.name}</p>
+          <p>With its practical position, this bike also fulfills a decorative function, add your hall or workspace.</p>
+          <button class="primary-button add-to-cart-button">
+            <img src="./icons/bt_add_to_cart.svg" alt="add to cart">
+            Add to cart
+          </button>
+        </div>
     `;
+    vistasPreview.push(vistaDetalle);
   });
   productImageList = document.getElementsByClassName("productImage");
+
   for (let i = 0; i < productImageList.length; i++) {
     productImageList[i].addEventListener("click", () =>
-      abrirCerrar(viewProduct, desktopMenu, myOrder, mobileMenu, "")
+      abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct)
     );
-    for (let i = 0; i < productImageList.length; i++) {
-      productImageList[i].addEventListener("click", () => OpenPreviewView());
-    }
-    // productCards.forEach((productCard) => {
-    //   productCard.addEventListener("click", () => console.log("Hola"));
-    //});
+  }
+
+  for (let i = 0; i < productImageList.length; i++) {
+    productImageList[i].addEventListener("click", () => {
+      viewProduct.innerHTML = vistasPreview[i];
+      closeViewProduct = document.querySelector(".product-detail-close");
+      closeViewProduct.addEventListener("click", () => {
+        abrirCerrar(viewProduct, "", "", "", "");
+      });
+    });
   }
 }
 
 renderProducts(productList);
+
+// productCards.forEach((productCard) => {
+//   productCard.addEventListener("click", () => console.log("Hola"));
+//});
