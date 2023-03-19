@@ -143,7 +143,7 @@ nav {
   top: 61px;
   padding: 24px;
   left: 0px;
-  width: 100%;
+  width: 60%;
 }
 .mobile-menu a {
   text-decoration: none;
@@ -188,7 +188,7 @@ aside {
 }
 
 aside#shoppingCartContainer {
-  position: absolute;
+  position: fixed;
   width: 360px;
 }
 
@@ -280,7 +280,7 @@ aside#shoppingCartContainer {
   height: 240px;
   border-radius: 30px;
   object-fit: cover;
-  box-shadow: 0px 0px 10px 3px #f7f7f7;
+  box-shadow: 0px 0px 8px 5px #ede5e5;
 }
 .product-info {
   display: flex;
@@ -310,6 +310,12 @@ aside#shoppingCartContainer {
 
 .productImage {
   cursor: pointer;
+}
+
+.backProductCard {
+  opacity: 0.3;
+  position: relative;
+  z-index: -1;
 }
 
 /*Product Detail Opened*/

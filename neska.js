@@ -6,21 +6,32 @@ const myOrder = document.querySelector("#shoppingCartContainer");
 const cartBoton = document.querySelector(".navbar-shopping-cart");
 const cardsContainer = document.querySelector(".cards-container");
 const viewProduct = document.querySelector("#productDetail");
+const gridContainer = document.querySelectorAll(
+  ".cards-container:not(:has(> div))"
+);
 
 const cerrarMyorder = document.querySelector(".close-my-order");
 let vistasPreview = [];
 let closeViewProduct;
 let productImageList;
+let productCard;
+
+for (grid of gridContainer) {
+  grid.addEventListener("click", () => console.log("hola"));
+}
 
 cuentaEmail.addEventListener("click", () =>
   abrirCerrar(desktopMenu, myOrder, viewProduct, mobileMenu, "")
 );
+cuentaEmail.addEventListener("click", () => openBack());
 botonMenu.addEventListener("click", () =>
   abrirCerrar(mobileMenu, myOrder, viewProduct, desktopMenu, "")
 );
+botonMenu.addEventListener("click", () => openBack());
 cartBoton.addEventListener("click", () =>
   abrirCerrar(myOrder, mobileMenu, desktopMenu, viewProduct, "")
 );
+cartBoton.addEventListener("click", () => openBack());
 
 cerrarMyorder.addEventListener("click", () =>
   abrirCerrar("", myOrder, "", "", "")
@@ -117,6 +128,16 @@ productList.push({
   image: "./images/277.jpeg",
 });
 
+function openBack() {
+  document.body.style.backgroundColor = "white";
+  for (var card of productCard) {
+    card.classList.remove("backProductCard");
+  }
+  for (var cards of productImageList) {
+    cards.style.boxShadow = "0px 0px 0px 0px white";
+  }
+}
+
 function formatoMoneda(valor) {
   let convertirMoneda = `$ ${valor.toLocaleString()}`;
   return convertirMoneda;
@@ -158,11 +179,20 @@ function renderProducts(arr) {
     vistasPreview.push(vistaDetalle);
   });
   productImageList = document.getElementsByClassName("productImage");
+  productCard = document.getElementsByClassName("product-card");
 
   for (let i = 0; i < productImageList.length; i++) {
     productImageList[i].addEventListener("click", () =>
       abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct)
     );
+    productImageList[i].addEventListener("click", () => {
+      document.body.style.backgroundColor = "#DAD8D8";
+    });
+    productCard[i].addEventListener("click", () => {
+      for (var card of productCard) {
+        card.classList.add("backProductCard");
+      }
+    });
   }
 
   for (let i = 0; i < productImageList.length; i++) {
@@ -171,6 +201,13 @@ function renderProducts(arr) {
       closeViewProduct = document.querySelector(".product-detail-close");
       closeViewProduct.addEventListener("click", () => {
         abrirCerrar(viewProduct, "", "", "", "");
+        document.body.style.backgroundColor = "white";
+        for (var card of productCard) {
+          card.classList.remove("backProductCard");
+        }
+        for (var cards of productImageList) {
+          cards.style.boxShadow = "0px 0px 0px 0px white";
+        }
       });
     });
   }
