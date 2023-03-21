@@ -160,6 +160,7 @@ function clickOnBack() {
   gridContainer.addEventListener("click", (event) => {
     if (event.target.tagName.toLowerCase() !== "img") {
       abrirCerrar("", viewProduct, myOrder, desktopMenu, "");
+      abrirCerrar("", mobileMenu, "", "", "");
       openBack();
     }
   });

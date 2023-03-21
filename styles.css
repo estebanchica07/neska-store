@@ -272,6 +272,7 @@ aside#shoppingCartContainer {
   font-size: var(--md);
 } */
 .primary-button {
+  display: flex;
   background-color: var(--hospital-green);
   border-radius: 8px;
   border: none;
@@ -281,6 +282,21 @@ aside#shoppingCartContainer {
   font-size: var(--md);
   font-weight: bold;
   height: 50px;
+  margin-bottom: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.whatsapp {
+  width: 20px;
+  align-content: center;
+  margin: 5px;
+}
+
+a:-webkit-any-link {
+  color: var(--white);
+  cursor: pointer;
+  text-decoration: none;
 }
 
 /*Products list*/
@@ -347,9 +363,9 @@ aside#productDetail {
   margin: auto;
   border-radius: 10px;
   border: 1px solid #ece4e4;
-  width: 445px;
+  width: 435px;
   position: fixed;
-  top: 60px;
+  top: 65px;
 }
 
 .product-detail-close {
@@ -385,7 +401,7 @@ aside#productDetail {
   color: var(--very-light-pink);
   font-size: var(--md);
   margin-top: 0;
-  margin-bottom: 36px;
+  margin-bottom: 25px;
 }
 .product-info-opened p:nth-child(3) {
   color: var(--very-light-pink);
