@@ -50,7 +50,7 @@
           <li class="navbar-email">tucorreo@correo.com</li>
           <li class="navbar-shopping-cart">
             <img src="./icons/icon_shopping_cart.svg" alt="shopping cart" />
-            <div>3</div>
+            <div class="quantity-order">0</div>
           </li>
         </ul>
       </div>
@@ -121,41 +121,23 @@
     
         <div class="my-order-content">
           <div class="shopping-cart">
-            <figure>
-              <img src="./images/702.jpg" alt="Deportivo">
-            </figure>
-            <p>Deportivo</p>
-            <p>$95.000</p>
-            <img src="./icons/icon_close.png" alt="close">
+
+            
           </div>
-    
-          <div class="shopping-cart">
-            <figure>
-              <img src="./images/636.jpg" alt="Deportivo">
-            </figure>
-            <p>Deportivo</p>
-            <p>$95.000</p>
-            <img src="./icons/icon_close.png" alt="close">
+          <div class="empty-order">
+            <p>
+              <span>Tu carrito está vacío</span>
+            </p>
           </div>
-    
-          <div class="shopping-cart">
-            <figure>
-              <img src="./images/709.jpg" alt="Deportivo">
-            </figure>
-            <p>Deportivo</p>
-            <p>$100.000</p>
-            <img src="./icons/icon_close.png" alt="close">
-          </div>
-    
-          <div class="order">
+          <div class="order inactive">
             <p>
               <span>Total</span>
             </p>
-            <p>$290.000</p>
+            <p class="total-price"></p>
           </div>
     
-          <button class="primary-button">
-            Verificar
+          <button class="primary-button inactive">
+            Confirmar
           </button>
         </div>
       </div>

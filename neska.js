@@ -7,12 +7,22 @@ const cartBoton = document.querySelector(".navbar-shopping-cart");
 const cardsContainer = document.querySelector(".cards-container");
 const viewProduct = document.querySelector("#productDetail");
 const gridContainer = document.querySelector(".cards-container");
-
 const cerrarMyorder = document.querySelector(".close-my-order");
+const contenMyOrder = document.querySelector(".shopping-cart");
+const buttonConfirm = document.querySelector(".primary-button");
+const totalOrder = document.querySelector(".order");
+const emptyCar = document.querySelector(".empty-order");
+const totalPrice = document.querySelector(".total-price");
+const quantityOrder = document.querySelector(".quantity-order");
+
+let buttonAddToCar;
 let vistasPreview = [];
+let myCarOrder = [];
 let closeViewProduct;
 let productImageList;
 let productCard;
+let spanPrice = 0;
+let spanOrder = 0;
 
 cuentaEmail.addEventListener("click", () =>
   abrirCerrar(desktopMenu, myOrder, viewProduct, mobileMenu, "")
@@ -149,7 +159,7 @@ function closeButton() {
 function clickOnBack() {
   gridContainer.addEventListener("click", (event) => {
     if (event.target.tagName.toLowerCase() !== "img") {
-      viewProduct.classList.add("inactive");
+      abrirCerrar("", viewProduct, myOrder, desktopMenu, "");
       openBack();
     }
   });
@@ -199,6 +209,21 @@ function renderProducts(arr) {
       viewProduct.innerHTML = vistasPreview[i];
       abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
       closeViewProduct = document.querySelector(".product-detail-close");
+      buttonAddToCar = document.querySelector(".add-to-cart-button");
+      buttonAddToCar.addEventListener("click", () => {
+        myCarOrder.push({
+          name: arr[i].name,
+          price: arr[i].price,
+          image: arr[i].image,
+        });
+        //addProductCar(myCarOrder[myCarOrder.length - 1]);
+        buttonConfirm.classList.remove("inactive");
+        totalOrder.classList.remove("inactive");
+        emptyCar.classList.add("inactive");
+        addProductCar(myCarOrder);
+        console.log(myCarOrder);
+        buttonAddToCar.style.backgroundColor = "black";
+      });
       closeButton();
       document.body.style.backgroundColor = "#DAD8D8";
       for (var card of productCard) {
@@ -210,6 +235,25 @@ function renderProducts(arr) {
 }
 
 renderProducts(productList);
+
+function addProductCar(arr) {
+  arr.forEach((product) => {
+    productAdded = `
+        <figure>
+          <img src="${product.image}" alt="${product.name}">
+        </figure>
+        <p>${product.name}</p>
+        <p>${formatoMoneda(product.price)}</p>
+        <img src="./icons/icon_close.png" alt="close">
+      `;
+    precioProduct = product.price;
+  });
+  contenMyOrder.innerHTML += productAdded;
+  spanPrice = spanPrice + precioProduct;
+  totalPrice.innerHTML = formatoMoneda(spanPrice);
+  spanOrder++;
+  quantityOrder.innerHTML = spanOrder;
+}
 
 // productCards.forEach((productCard) => {
 //   productCard.addEventListener("click", () => console.log("Hola"));
