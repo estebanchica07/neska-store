@@ -293,12 +293,6 @@ aside#shoppingCartContainer {
   margin: 5px;
 }
 
-a:-webkit-any-link {
-  color: var(--white);
-  cursor: pointer;
-  text-decoration: none;
-}
-
 /*Products list*/
 
 .cards-container {
@@ -420,6 +414,11 @@ aside#productDetail {
   font-weight: bold;
   height: 50px;
 }
+
+.link {
+  text-decoration: none;
+}
+
 .add-to-cart-button {
   display: flex;
   align-items: center;

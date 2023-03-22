@@ -8,13 +8,14 @@ const cardsContainer = document.querySelector(".cards-container");
 const viewProduct = document.querySelector("#productDetail");
 const gridContainer = document.querySelector(".cards-container");
 const cerrarMyorder = document.querySelector(".close-my-order");
-const contenMyOrder = document.querySelector(".shopping-cart");
+const contenMyOrder = document.querySelector(".my-order-content");
 const buttonConfirm = document.querySelector(".primary-button");
 const totalOrder = document.querySelector(".order");
 const emptyCar = document.querySelector(".empty-order");
 const totalPrice = document.querySelector(".total-price");
 const quantityOrder = document.querySelector(".quantity-order");
 
+let deleteProduct;
 let buttonAddToCar;
 let vistasPreview = [];
 let myCarOrder = [];
@@ -195,7 +196,7 @@ function renderProducts(arr) {
           <p>With its practical position, this bike also fulfills a decorative function, add your hall or workspace.</p>
           <button class="primary-button add-to-cart-button">
             <img src="./icons/bt_add_to_cart.svg" alt="add to cart">
-            Add to cart
+            Add to cart           
           </button>
         </div>
     `;
@@ -219,10 +220,11 @@ function renderProducts(arr) {
         });
         //addProductCar(myCarOrder[myCarOrder.length - 1]);
         buttonConfirm.classList.remove("inactive");
+        buttonAddToCar.innerHTML = "Producto añadido ✅";
         totalOrder.classList.remove("inactive");
         emptyCar.classList.add("inactive");
-        addProductCar(myCarOrder);
         console.log(myCarOrder);
+        addProductCar(myCarOrder);
         buttonAddToCar.style.backgroundColor = "black";
       });
       closeButton();
@@ -240,20 +242,35 @@ renderProducts(productList);
 function addProductCar(arr) {
   arr.forEach((product) => {
     productAdded = `
-        <figure>
-          <img src="${product.image}" alt="${product.name}">
-        </figure>
-        <p>${product.name}</p>
-        <p>${formatoMoneda(product.price)}</p>
-        <img src="./icons/icon_close.png" alt="close">
+        <div class="shopping-cart">
+          <figure>
+            <img src="${product.image}" alt="${product.name}">
+          </figure>
+          <p>${product.name}</p>
+          <p>${formatoMoneda(product.price)}</p>
+          <img class="delete" src="./icons/icon_close.png" alt="close">
+        </div>
       `;
     precioProduct = product.price;
   });
+
   contenMyOrder.innerHTML += productAdded;
+  deleteProduct = document.getElementsByClassName("delete");
   spanPrice = spanPrice + precioProduct;
   totalPrice.innerHTML = formatoMoneda(spanPrice);
   spanOrder++;
   quantityOrder.innerHTML = spanOrder;
+}
+
+function deleteElements(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    deleteProduct[i].addEventListener("click", () => {
+      arr.splice(i, 1);
+      console.log(myCarOrder);
+
+      contenMyOrder.removeChild(contenMyOrder.childNodes[i + 5]);
+    });
+  }
 }
 
 // productCards.forEach((productCard) => {
