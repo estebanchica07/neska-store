@@ -8,7 +8,7 @@ const cardsContainer = document.querySelector(".cards-container");
 const viewProduct = document.querySelector("#productDetail");
 const gridContainer = document.querySelector(".cards-container");
 const cerrarMyorder = document.querySelector(".close-my-order");
-const contenMyOrder = document.querySelector(".my-order-content");
+const contenMyOrder = document.querySelector(".my-order-add");
 const buttonConfirm = document.querySelector(".primary-button");
 const totalOrder = document.querySelector(".order");
 const emptyCar = document.querySelector(".empty-order");
@@ -262,13 +262,17 @@ function addProductCar(arr) {
   quantityOrder.innerHTML = spanOrder;
 }
 
-function deleteElements(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    deleteProduct[i].addEventListener("click", () => {
-      arr.splice(i, 1);
-      console.log(myCarOrder);
+function deleteElements(listaX) {
+  for (let i = 0; i < listaX.length; i++) {
+    //console.log(myCarOrder);
+    console.log(contenMyOrder.children[i]);
+    console.log(listaX);
+    listaX[i].addEventListener("click", () => {
+      console.log("Debo eliminar un elemento pero no soy capaz");
+      contenMyOrder.children[i].remove();
 
-      contenMyOrder.removeChild(contenMyOrder.childNodes[i + 5]);
+      console.log(listaX);
+      //console.log(myCarOrder);
     });
   }
 }
