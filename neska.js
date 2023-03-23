@@ -24,9 +24,12 @@ let productImageList;
 let productCard;
 let addToCardGrid;
 let listItems;
+let indiceOpenProduct = 0;
 let refEliminateOrder = 0;
 let spanPrice = 0;
 let spanOrder = 0;
+let indice = 0;
+//let refToOpen;
 
 cuentaEmail.addEventListener("click", () =>
   abrirCerrar(desktopMenu, myOrder, viewProduct, mobileMenu, "")
@@ -196,13 +199,47 @@ function renderProducts(arr) {
       totalOrder.classList.remove("inactive");
       emptyCar.classList.add("inactive");
       iconAdded[i].classList.remove("inactive");
+      abrirCerrar("", "", "", "", myOrder);
     });
   }
+  vistaPrevia(productImageList, arr);
+  clickOnBack();
+}
 
-  for (let i = 0; i < productImageList.length; i++) {
+renderProducts(productList);
+
+function addProductCar(arr) {
+  arr.forEach((product) => {
+    productAdded = `
+        <div class="shopping-cart">
+          <figure>
+            <img src="${product.image}" alt="${product.name}">
+          </figure>
+          <p>${product.name}</p>
+          <p>${formatoMoneda(product.price)}</p>
+          <img class="delete" src="./icons/icon_close.png" alt="close">
+        </div>
+      `;
+    precioProduct = product.price;
+  });
+
+  contenMyOrder.innerHTML += productAdded;
+
+  listItems = contenMyOrder.getElementsByTagName("div");
+  openViewFromCart(listItems, arr);
+  removeOrder(listItems);
+
+  spanPrice += precioProduct;
+  totalPrice.innerHTML = formatoMoneda(spanPrice);
+
+  spanOrder++;
+  quantityOrder.innerHTML = spanOrder;
+}
+
+function vistaPrevia(lista, arr) {
+  for (let i = 0; i < lista.length; i++) {
     let refAddedOrder = productList[i].ref;
-
-    productImageList[i].addEventListener("click", () => {
+    lista[i].addEventListener("click", () => {
       viewProduct.innerHTML = vistasPreview[i];
 
       abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
@@ -236,36 +273,50 @@ function renderProducts(arr) {
       }
     });
   }
-  clickOnBack();
 }
+//debo unificar estas dos funciones openViewFromCart y vistaPrevia
+function openViewFromCart(order, arr) {
+  for (let i = 0; i < order.length; i++) {
+    let refAddedOrder = productList[i].ref;
+    let openImage = order[i].getElementsByTagName("img")[0];
+    let refToOpen = myCarOrder[i].ref;
 
-renderProducts(productList);
+    openImage.addEventListener("click", function () {
+      getIndex(refToOpen);
+      console.log("hola");
+      console.log(refToOpen);
+      viewProduct.innerHTML = vistasPreview[indice];
+      abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
 
-function addProductCar(arr) {
-  arr.forEach((product) => {
-    productAdded = `
-        <div class="shopping-cart">
-          <figure>
-            <img src="${product.image}" alt="${product.name}">
-          </figure>
-          <p>${product.name}</p>
-          <p>${formatoMoneda(product.price)}</p>
-          <img class="delete" src="./icons/icon_close.png" alt="close">
-        </div>
-      `;
-    precioProduct = product.price;
-  });
+      closeViewProduct = document.querySelector(".product-detail-close");
+      buttonAddToCar = document.querySelector(".add-to-cart-button");
 
-  contenMyOrder.innerHTML += productAdded;
+      buttonAddToCar.addEventListener("click", () => {
+        myCarOrder.push({
+          ref: arr[i].ref,
+          name: arr[i].name,
+          price: arr[i].price,
+          image: arr[i].image,
+        });
+        addBtnAdded(refAddedOrder);
+        console.log(refAddedOrder);
+        buttonConfirm.classList.remove("inactive");
+        buttonAddToCar.innerHTML = "Producto añadido ✅";
+        totalOrder.classList.remove("inactive");
+        emptyCar.classList.add("inactive");
+        console.log(myCarOrder);
+        addProductCar(myCarOrder);
+        buttonAddToCar.style.backgroundColor = "black";
+      });
 
-  listItems = contenMyOrder.getElementsByTagName("div");
-  removeOrder(listItems);
+      closeButton();
 
-  spanPrice += precioProduct;
-  totalPrice.innerHTML = formatoMoneda(spanPrice);
-
-  spanOrder++;
-  quantityOrder.innerHTML = spanOrder;
+      document.body.style.backgroundColor = "#DAD8D8";
+      for (var card of productCard) {
+        card.classList.add("backProductCard");
+      }
+    });
+  }
 }
 
 function removeOrder(order) {
@@ -293,6 +344,7 @@ function removeOrder(order) {
         totalOrder.classList.add("inactive");
         emptyCar.classList.remove("inactive");
         buttonConfirm.classList.add("inactive");
+        abrirCerrar("", myOrder, "", "", "");
       }
       removeBtnAdded(refEliminateOrder);
     });
@@ -311,4 +363,11 @@ function addBtnAdded(refAdded) {
     return zapato.ref === +refAdded;
   });
   iconAdded[indiceAddedProduct].classList.remove("inactive");
+}
+
+function getIndex(refOpen) {
+  let indiceOpenProduct = productList.findIndex(function (zapato) {
+    return zapato.ref === +refOpen;
+  });
+  indice = indiceOpenProduct;
 }
