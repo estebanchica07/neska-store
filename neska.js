@@ -24,6 +24,7 @@ let productImageList;
 let productCard;
 let addToCardGrid;
 let listItems;
+let refEliminateOrder = 0;
 let spanPrice = 0;
 let spanOrder = 0;
 
@@ -66,76 +67,46 @@ const abrirCerrar = function (e, m, g, k, l) {
 
 const productList = [];
 
-productList.push({
-  name: "Deportivo",
-  price: 95000,
-  image: "./images/702.jpg",
-});
-productList.push({
-  name: "Deportivo",
-  price: 95000,
-  image: "./images/636.jpg",
-});
-productList.push({
-  name: "Deportivo",
-  price: 100000,
-  image: "./images/709.jpg",
-});
-productList.push({
-  name: "Botín",
-  price: 100000,
-  image: "./images/534.jpg",
-});
-productList.push({
-  name: "Casual",
-  price: 100000,
-  image: "./images/604.jpg",
-});
-productList.push({
-  name: "Tacón",
-  price: 100000,
-  image: "./images/585.jpg",
-});
-productList.push({
-  name: "Deportivo",
-  price: 95000,
-  image: "./images/637.jpg",
-});
-productList.push({
-  name: "Deportivo",
-  price: 95000,
-  image: "./images/701.jpg",
-});
-productList.push({
-  name: "Deportivo",
-  price: 95000,
-  image: "./images/710.jpg",
-});
-productList.push({
-  name: "Botín",
-  price: 95000,
-  image: "./images/809.jpeg",
-});
-productList.push({
-  name: "Tacón",
-  price: 95000,
-  image: "./images/827.jpeg",
-});
-productList.push({
-  name: "Deportivo",
-  price: 95000,
-  image: "./images/770.jpeg",
-});
-productList.push({
-  name: "Deportivo",
-  price: 95000,
-  image: "./images/637.jpg",
-});
-productList.push({
-  name: "Deportivo",
-  price: 95000,
-  image: "./images/277.jpeg",
-});
+class zapatos {
+  constructor(ref, nombre, precio, imagen) {
+    this.ref = ref;
+    this.name = nombre;
+    this.price = precio;
+    this.image = imagen;
+  }
+}
+
+let n702 = new zapatos(702, "Deportivo", 95000, "./images/702.jpg");
+let n636 = new zapatos(636, "Deportivo", 95000, "./images/636.jpg");
+let n709 = new zapatos(709, "Deportivo", 100000, "./images/709.jpg");
+let n534 = new zapatos(534, "Botín", 95000, "./images/534.jpg");
+let n604 = new zapatos(604, "Casual", 95000, "./images/604.jpg");
+let n585 = new zapatos(585, "Tacón", 95000, "./images/585.jpg");
+let n637 = new zapatos(637, "Deportivo", 95000, "./images/637.jpg");
+let n701 = new zapatos(701, "Deportivo", 95000, "./images/701.jpg");
+let n710 = new zapatos(710, "Deportivo", 95000, "./images/710.jpg");
+let n809 = new zapatos(809, "Botín", 95000, "./images/809.jpeg");
+let n827 = new zapatos(827, "Tacón", 95000, "./images/827.jpeg");
+let n770 = new zapatos(770, "Casual", 95000, "./images/770.jpeg");
+let n277 = new zapatos(227, "Deportivo", 95000, "./images/277.jpeg");
+let n887 = new zapatos(887, "Baleta", 95000, "./images/887.jpeg");
+
+productList.push(
+  n702,
+  n636,
+  n709,
+  n534,
+  n604,
+  n585,
+  n637,
+  n701,
+  n710,
+  n809,
+  n827,
+  n770,
+  n277,
+  n887
+);
 
 function openBack() {
   document.body.style.backgroundColor = "white";
@@ -214,12 +185,14 @@ function renderProducts(arr) {
   for (let i = 0; i < addToCardGrid.length; i++) {
     addToCardGrid[i].addEventListener("click", () => {
       myCarOrder.push({
+        ref: arr[i].ref,
         name: arr[i].name,
         price: arr[i].price,
         image: arr[i].image,
       });
       console.log(myCarOrder);
       addProductCar(myCarOrder);
+      buttonConfirm.classList.remove("inactive");
       totalOrder.classList.remove("inactive");
       emptyCar.classList.add("inactive");
       iconAdded[i].classList.remove("inactive");
@@ -227,6 +200,8 @@ function renderProducts(arr) {
   }
 
   for (let i = 0; i < productImageList.length; i++) {
+    let refAddedOrder = productList[i].ref;
+
     productImageList[i].addEventListener("click", () => {
       viewProduct.innerHTML = vistasPreview[i];
 
@@ -237,11 +212,13 @@ function renderProducts(arr) {
 
       buttonAddToCar.addEventListener("click", () => {
         myCarOrder.push({
+          ref: arr[i].ref,
           name: arr[i].name,
           price: arr[i].price,
           image: arr[i].image,
         });
-
+        addBtnAdded(refAddedOrder);
+        console.log(refAddedOrder);
         buttonConfirm.classList.remove("inactive");
         buttonAddToCar.innerHTML = "Producto añadido ✅";
         totalOrder.classList.remove("inactive");
@@ -296,21 +273,42 @@ function removeOrder(order) {
     let closeBoton = order[i].getElementsByTagName("img")[1];
     let positionArray = myCarOrder[i]; // Seleccionar el elemento del array para después utilizarlo como Index y así eliminarlo por splice
     let priceEliminateOrder = myCarOrder[i].price;
+    let refEliminateOrder = myCarOrder[i].ref;
 
     closeBoton.addEventListener("click", function () {
       this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
+      console.log(refEliminateOrder);
+
+      myCarOrder.splice(positionArray, 1);
+
       spanPrice -= priceEliminateOrder;
       totalPrice.innerHTML = formatoMoneda(spanPrice);
-      myCarOrder.splice(positionArray, 1);
-      console.log(myCarOrder);
+
       spanOrder -= 1;
       quantityOrder.innerHTML = spanOrder;
+
+      console.log(myCarOrder);
 
       if (spanPrice === 0) {
         totalOrder.classList.add("inactive");
         emptyCar.classList.remove("inactive");
         buttonConfirm.classList.add("inactive");
       }
+      removeBtnAdded(refEliminateOrder);
     });
   }
+}
+
+function removeBtnAdded(refRemoved) {
+  let indiceRemovedProduct = productList.findIndex(function (zapato) {
+    return zapato.ref === +refRemoved;
+  });
+  iconAdded[indiceRemovedProduct].classList.add("inactive");
+}
+
+function addBtnAdded(refAdded) {
+  let indiceAddedProduct = productList.findIndex(function (zapato) {
+    return zapato.ref === +refAdded;
+  });
+  iconAdded[indiceAddedProduct].classList.remove("inactive");
 }
