@@ -415,6 +415,10 @@ aside#productDetail {
   height: 50px;
 }
 
+.primary-button.inactive {
+  display: none;
+}
+
 .link {
   text-decoration: none;
 }

@@ -210,16 +210,19 @@ function renderProducts(arr) {
   for (let i = 0; i < productImageList.length; i++) {
     productImageList[i].addEventListener("click", () => {
       viewProduct.innerHTML = vistasPreview[i];
+
       abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
+
       closeViewProduct = document.querySelector(".product-detail-close");
       buttonAddToCar = document.querySelector(".add-to-cart-button");
+
       buttonAddToCar.addEventListener("click", () => {
         myCarOrder.push({
           name: arr[i].name,
           price: arr[i].price,
           image: arr[i].image,
         });
-        //addProductCar(myCarOrder[myCarOrder.length - 1]);
+
         buttonConfirm.classList.remove("inactive");
         buttonAddToCar.innerHTML = "Producto añadido ✅";
         totalOrder.classList.remove("inactive");
@@ -228,7 +231,9 @@ function renderProducts(arr) {
         addProductCar(myCarOrder);
         buttonAddToCar.style.backgroundColor = "black";
       });
+
       closeButton();
+
       document.body.style.backgroundColor = "#DAD8D8";
       for (var card of productCard) {
         card.classList.add("backProductCard");
@@ -260,8 +265,9 @@ function addProductCar(arr) {
   listItems = contenMyOrder.getElementsByTagName("div");
   removeOrder(listItems);
 
-  spanPrice = spanPrice + precioProduct;
+  spanPrice += precioProduct;
   totalPrice.innerHTML = formatoMoneda(spanPrice);
+
   spanOrder++;
   quantityOrder.innerHTML = spanOrder;
 }
@@ -269,11 +275,23 @@ function addProductCar(arr) {
 function removeOrder(order) {
   for (let i = 0; i < order.length; i++) {
     let closeBoton = order[i].getElementsByTagName("img")[1];
+    let positionArray = myCarOrder[i]; // Seleccionar el elemento del array para después utilizarlo como Index y así eliminarlo por splice
+    let priceEliminateOrder = myCarOrder[i].price;
+
     closeBoton.addEventListener("click", function () {
       this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
-      myCarOrder.splice(i, 1);
-      debugger;
+      spanPrice -= priceEliminateOrder;
+      totalPrice.innerHTML = formatoMoneda(spanPrice);
+      myCarOrder.splice(positionArray, 1);
       console.log(myCarOrder);
+      spanOrder -= 1;
+      quantityOrder.innerHTML = spanOrder;
+
+      if (spanPrice === 0) {
+        totalOrder.classList.add("inactive");
+        emptyCar.classList.remove("inactive");
+        buttonConfirm.classList.add("inactive");
+      }
     });
   }
 }
