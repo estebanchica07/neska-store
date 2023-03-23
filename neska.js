@@ -22,6 +22,7 @@ let myCarOrder = [];
 let closeViewProduct;
 let productImageList;
 let productCard;
+let listItems;
 let spanPrice = 0;
 let spanOrder = 0;
 
@@ -255,28 +256,24 @@ function addProductCar(arr) {
   });
 
   contenMyOrder.innerHTML += productAdded;
-  deleteProduct = document.getElementsByClassName("delete");
+
+  listItems = contenMyOrder.getElementsByTagName("div");
+  removeOrder(listItems);
+
   spanPrice = spanPrice + precioProduct;
   totalPrice.innerHTML = formatoMoneda(spanPrice);
   spanOrder++;
   quantityOrder.innerHTML = spanOrder;
 }
 
-function deleteElements(listaX) {
-  for (let i = 0; i < listaX.length; i++) {
-    //console.log(myCarOrder);
-    console.log(contenMyOrder.children[i]);
-    console.log(listaX);
-    listaX[i].addEventListener("click", () => {
-      console.log("Debo eliminar un elemento pero no soy capaz");
-      contenMyOrder.children[i].remove();
-
-      console.log(listaX);
-      //console.log(myCarOrder);
+function removeOrder(order) {
+  for (let i = 0; i < order.length; i++) {
+    let closeBoton = order[i].getElementsByTagName("img")[1];
+    closeBoton.addEventListener("click", function () {
+      this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
+      myCarOrder.splice(i, 1);
+      debugger;
+      console.log(myCarOrder);
     });
   }
 }
-
-// productCards.forEach((productCard) => {
-//   productCard.addEventListener("click", () => console.log("Hola"));
-//});
