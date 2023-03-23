@@ -22,6 +22,7 @@ let myCarOrder = [];
 let closeViewProduct;
 let productImageList;
 let productCard;
+let addToCardGrid;
 let listItems;
 let spanPrice = 0;
 let spanOrder = 0;
@@ -179,7 +180,8 @@ function renderProducts(arr) {
             <p>${product.name}</p>
           </div>
           <figure>
-            <img src="./icons/bt_add_to_cart.svg" alt="">
+          <img class="icon-added inactive" src="./icons/checked.png" alt="">
+          <img class="add-to-cart-grid" src="./icons/bt_add_to_cart.svg" alt="">
           </figure>
         </div>
       </div>
@@ -206,6 +208,23 @@ function renderProducts(arr) {
 
   productImageList = document.getElementsByClassName("productImage");
   productCard = document.getElementsByClassName("product-card");
+  addToCardGrid = document.getElementsByClassName("add-to-cart-grid");
+  iconAdded = document.getElementsByClassName("icon-added");
+
+  for (let i = 0; i < addToCardGrid.length; i++) {
+    addToCardGrid[i].addEventListener("click", () => {
+      myCarOrder.push({
+        name: arr[i].name,
+        price: arr[i].price,
+        image: arr[i].image,
+      });
+      console.log(myCarOrder);
+      addProductCar(myCarOrder);
+      totalOrder.classList.remove("inactive");
+      emptyCar.classList.add("inactive");
+      iconAdded[i].classList.remove("inactive");
+    });
+  }
 
   for (let i = 0; i < productImageList.length; i++) {
     productImageList[i].addEventListener("click", () => {

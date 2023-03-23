@@ -348,6 +348,13 @@ aside#shoppingCartContainer {
   z-index: -1;
 }
 
+.add-to-cart-grid {
+  cursor: pointer;
+}
+
+.icon-added {
+  width: 30px;
+}
 /*Product Detail Opened*/
 
 aside#productDetail {
