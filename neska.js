@@ -158,8 +158,8 @@ function clickOnOrder() {
   });
 }
 
-function renderProducts(arr) {
-  arr.forEach((product) => {
+function renderProducts(coleccion) {
+  coleccion.forEach((product) => {
     tarjetaProducto = `
       <div class="product-card">
         <img src="${product.image}" class="productImage" alt="">
@@ -179,7 +179,7 @@ function renderProducts(arr) {
 
     vistaDetalle = `
         <div class="product-detail-close">
-          <img src="./icons/icon_close.png" class="product-preview" alt="close">
+          <img src="./icons/close1.png" class="product-preview" alt="close">
         </div>
         <img src="${product.image}" alt="bike">
         <div class="product-info-opened">
@@ -203,10 +203,10 @@ function renderProducts(arr) {
   for (let i = 0; i < addToCardGrid.length; i++) {
     addToCardGrid[i].addEventListener("click", () => {
       myCarOrder.push({
-        ref: arr[i].ref,
-        name: arr[i].name,
-        price: arr[i].price,
-        image: arr[i].image,
+        ref: coleccion[i].ref,
+        name: coleccion[i].name,
+        price: coleccion[i].price,
+        image: coleccion[i].image,
       });
       console.log(myCarOrder);
       addProductCar(myCarOrder);
@@ -217,14 +217,14 @@ function renderProducts(arr) {
       abrirCerrar("", "", "", "", myOrder);
     });
   }
-  vistaPrevia(productImageList, arr);
+  vistaPrevia(productImageList, coleccion);
   clickOnBack();
 }
 
 renderProducts(productList);
 
-function addProductCar(arr) {
-  arr.forEach((product) => {
+function addProductCar(ordenDePedido) {
+  ordenDePedido.forEach((product) => {
     productAdded = `
         <div class="shopping-cart">
           <figure>
@@ -241,7 +241,7 @@ function addProductCar(arr) {
   contenMyOrder.innerHTML += productAdded;
 
   listItems = contenMyOrder.getElementsByTagName("div");
-  openViewFromCart(listItems, arr);
+  openViewFromCart(listItems, ordenDePedido);
   removeOrder(listItems);
 
   spanPrice += precioProduct;
@@ -251,91 +251,68 @@ function addProductCar(arr) {
   quantityOrder.innerHTML = spanOrder;
 }
 
-function vistaPrevia(lista, arr) {
-  for (let i = 0; i < lista.length; i++) {
+function vistaPrevia(listaImagenes, coleccion) {
+  for (let i = 0; i < listaImagenes.length; i++) {
     let refAddedOrder = productList[i].ref;
-    lista[i].addEventListener("click", () => {
+
+    listaImagenes[i].addEventListener("click", () => {
       viewProduct.innerHTML = vistasPreview[i];
 
       abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
-
-      closeViewProduct = document.querySelector(".product-detail-close");
-      buttonAddToCar = document.querySelector(".add-to-cart-button");
-
-      buttonAddToCar.addEventListener("click", () => {
-        myCarOrder.push({
-          ref: arr[i].ref,
-          name: arr[i].name,
-          price: arr[i].price,
-          image: arr[i].image,
-        });
-        addBtnAdded(refAddedOrder);
-        console.log(refAddedOrder);
-        buttonConfirm.classList.remove("inactive");
-        buttonAddToCar.innerHTML = `
-          <p class="product-added">Producto añadido</p>
-          <img class="icon-added-view" src="./icons/checked.png" alt="">
-          `;
-
-        totalOrder.classList.remove("inactive");
-        emptyCar.classList.add("inactive");
-        console.log(myCarOrder);
-        addProductCar(myCarOrder);
-        buttonAddToCar.style.backgroundColor = "black";
-      });
-
-      closeButton();
+      AddToCart(coleccion, i, refAddedOrder);
       clickOnOrder();
-
-      document.body.style.backgroundColor = "#DAD8D8";
-      for (var card of productCard) {
-        card.classList.add("backProductCard");
-      }
     });
   }
 }
+
 //debo unificar estas dos funciones openViewFromCart y vistaPrevia
-function openViewFromCart(order, arr) {
-  for (let i = 0; i < order.length; i++) {
+function openViewFromCart(imagesCart, ordenDePedido) {
+  for (let i = 0; i < imagesCart.length; i++) {
     let refAddedOrder = productList[i].ref;
-    let openImage = order[i].getElementsByTagName("img")[0];
+    let openImage = imagesCart[i].getElementsByTagName("img")[0];
     let refToOpen = myCarOrder[i].ref;
 
     openImage.addEventListener("click", function () {
       getIndex(refToOpen);
-      console.log("hola");
-      console.log(refToOpen);
       viewProduct.innerHTML = vistasPreview[indice];
       abrirCerrar("", desktopMenu, "", mobileMenu, viewProduct);
 
-      closeViewProduct = document.querySelector(".product-detail-close");
-      buttonAddToCar = document.querySelector(".add-to-cart-button");
-
-      buttonAddToCar.addEventListener("click", () => {
-        myCarOrder.push({
-          ref: arr[i].ref,
-          name: arr[i].name,
-          price: arr[i].price,
-          image: arr[i].image,
-        });
-        addBtnAdded(refAddedOrder);
-        console.log(refAddedOrder);
-        buttonConfirm.classList.remove("inactive");
-        buttonAddToCar.innerHTML = "Producto añadido ✅";
-        totalOrder.classList.remove("inactive");
-        emptyCar.classList.add("inactive");
-        console.log(myCarOrder);
-        addProductCar(myCarOrder);
-        buttonAddToCar.style.backgroundColor = "black";
-      });
-
-      closeButton();
-
-      document.body.style.backgroundColor = "#DAD8D8";
-      for (var card of productCard) {
-        card.classList.add("backProductCard");
-      }
+      AddToCart(ordenDePedido, i, refAddedOrder);
     });
+  }
+}
+
+function AddToCart(ordenDePedido, i, referencia) {
+  closeViewProduct = document.querySelector(".product-detail-close");
+  buttonAddToCar = document.querySelector(".add-to-cart-button");
+
+  buttonAddToCar.addEventListener("click", () => {
+    myCarOrder.push({
+      ref: ordenDePedido[i].ref,
+      name: ordenDePedido[i].name,
+      price: ordenDePedido[i].price,
+      image: ordenDePedido[i].image,
+    });
+    addBtnAdded(referencia);
+    buttonConfirm.classList.remove("inactive");
+    buttonAddToCar.innerHTML = `
+      <p class="product-added">Producto añadido</p>
+      <img class="icon-added-view" src="./icons/checked.png" alt="">
+      `;
+
+    totalOrder.classList.remove("inactive");
+    emptyCar.classList.add("inactive");
+    addProductCar(myCarOrder);
+    buttonAddToCar.style.backgroundColor = "black";
+
+    console.log(myCarOrder);
+  });
+
+  closeButton();
+
+  document.body.style.backgroundColor = "#DAD8D8";
+  for (var card of productCard) {
+    card.classList.add("backProductCard");
   }
 }
 
@@ -348,7 +325,6 @@ function removeOrder(order) {
 
     closeBoton.addEventListener("click", function () {
       this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
-      console.log(refEliminateOrder);
 
       myCarOrder.splice(positionArray, 1);
 

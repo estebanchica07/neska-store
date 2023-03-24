@@ -219,7 +219,7 @@ aside#shoppingCartContainer {
   margin-bottom: 24px;
   border-radius: 8px;
   padding: 0 24px;
-  width: 330px;
+  width: 309px;
 }
 
 .order.inactive {
@@ -438,7 +438,7 @@ aside#productDetail {
   font-size: var(--md);
   font-weight: bold;
   height: 50px;
-  width: 378px;
+  width: 355px;
   margin-right: 50px;
 }
 
@@ -462,6 +462,10 @@ aside#productDetail {
 
 .product-added {
   margin: 5px;
+}
+
+.product-preview {
+  width: 15px;
 }
 
 .icon-added-view {
