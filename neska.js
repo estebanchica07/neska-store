@@ -149,6 +149,14 @@ function clickOnBack() {
     }
   });
 }
+function clickOnOrder() {
+  myOrder.addEventListener("click", (event) => {
+    if (event.target.tagName.toLowerCase() !== "img") {
+      openBack();
+      abrirCerrar("", "", "", viewProduct, myOrder);
+    }
+  });
+}
 
 function renderProducts(arr) {
   arr.forEach((product) => {
@@ -179,8 +187,8 @@ function renderProducts(arr) {
           <p>${product.name}</p>
           <p>With its practical position, this bike also fulfills a decorative function, add your hall or workspace.</p>
           <button class="primary-button add-to-cart-button">
-            <img src="./icons/bt_add_to_cart.svg" alt="add to cart">
-            Add to cart           
+            <img class="btn-add" src="./icons/add.png" alt="add to cart">
+           Añadir a mi carrito           
           </button>
         </div>
     `;
@@ -264,7 +272,11 @@ function vistaPrevia(lista, arr) {
         addBtnAdded(refAddedOrder);
         console.log(refAddedOrder);
         buttonConfirm.classList.remove("inactive");
-        buttonAddToCar.innerHTML = "Producto añadido ✅";
+        buttonAddToCar.innerHTML = `
+          <p class="product-added">Producto añadido</p>
+          <img class="icon-added-view" src="./icons/checked.png" alt="">
+          `;
+
         totalOrder.classList.remove("inactive");
         emptyCar.classList.add("inactive");
         console.log(myCarOrder);
@@ -273,6 +285,7 @@ function vistaPrevia(lista, arr) {
       });
 
       closeButton();
+      clickOnOrder();
 
       document.body.style.backgroundColor = "#DAD8D8";
       for (var card of productCard) {

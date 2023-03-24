@@ -5,7 +5,7 @@
   --black: #000000;
   --very-light-pink: #c7c7c7;
   --text-input-field: #f7f7f7;
-  --hospital-green: #acd9b2;
+  --hospital-green: #8eba95;
   --sm: 14px;
   --md: 16px;
   --lg: 18px;
@@ -179,6 +179,11 @@ aside {
   right: 0;
 }
 
+.btn-add {
+  width: 30px;
+  margin: 7px;
+}
+
 /*Shopping Cart*/
 #shoppingCartContainer {
   padding: 0px 3px 0px 20px;
@@ -214,7 +219,7 @@ aside#shoppingCartContainer {
   margin-bottom: 24px;
   border-radius: 8px;
   padding: 0 24px;
-  width: 310px;
+  width: 330px;
 }
 
 .order.inactive {
@@ -239,7 +244,6 @@ aside#shoppingCartContainer {
 .order p:nth-child(1) {
   display: flex;
   flex-direction: column;
-  padding-left: ;
 }
 .order p span:nth-child(1) {
   font-size: var(--md);
@@ -434,7 +438,7 @@ aside#productDetail {
   font-size: var(--md);
   font-weight: bold;
   height: 50px;
-  width: 359px;
+  width: 378px;
   margin-right: 50px;
 }
 
@@ -451,6 +455,18 @@ aside#productDetail {
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding-right: 15px;
+  gap: 10px;
+  padding-top: 5px;
+}
+
+.product-added {
+  margin: 5px;
+}
+
+.icon-added-view {
+  width: 25px;
+  margin-bottom: 3px;
 }
 
 aside #productDetail {
@@ -485,8 +501,8 @@ aside #productDetail {
     width: 100%;
   }
   .product-info figure img {
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
   }
   .product-info {
     margin: 24px 10px 0 10px;
@@ -501,8 +517,13 @@ aside #productDetail {
     max-height: 360px;
   }
   aside#shoppingCartContainer {
-    width: 391px;
+    width: 100%;
     padding: 0px 8px 0px 15px;
+  }
+  .product-info figure {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
   }
 }
 
