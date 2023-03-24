@@ -181,7 +181,7 @@ aside {
 
 /*Shopping Cart*/
 #shoppingCartContainer {
-  padding: 0px 15px;
+  padding: 0px 3px 0px 20px;
   border-radius: 10px;
   border: 1px solid rgba(237, 229, 229, 0.956);
   top: 60px;
@@ -189,7 +189,7 @@ aside {
 
 aside#shoppingCartContainer {
   position: fixed;
-  width: 360px;
+  width: 400px;
 }
 
 .title-container {
@@ -214,6 +214,7 @@ aside#shoppingCartContainer {
   margin-bottom: 24px;
   border-radius: 8px;
   padding: 0 24px;
+  width: 310px;
 }
 
 .order.inactive {
@@ -238,6 +239,7 @@ aside#shoppingCartContainer {
 .order p:nth-child(1) {
   display: flex;
   flex-direction: column;
+  padding-left: 25px;
 }
 .order p span:nth-child(1) {
   font-size: var(--md);
@@ -246,6 +248,7 @@ aside#shoppingCartContainer {
 .order p:nth-child(2) {
   text-align: end;
   font-weight: bold;
+  padding-right: 25px;
 }
 .shopping-cart {
   display: grid;
@@ -291,6 +294,12 @@ aside#shoppingCartContainer {
   width: 20px;
   align-content: center;
   margin: 5px;
+}
+
+.my-order-add {
+  overflow-y: scroll;
+  height: 400px;
+  padding-right: 20px;
 }
 
 /*Products list*/
@@ -420,6 +429,7 @@ aside#productDetail {
   font-size: var(--md);
   font-weight: bold;
   height: 50px;
+  width: 359px;
 }
 
 .primary-button.inactive {
