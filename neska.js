@@ -111,6 +111,13 @@ productList.push(
   n887
 );
 
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    abrirCerrar("", myOrder, desktopMenu, viewProduct, "");
+    openBack();
+  }
+});
+
 function openBack() {
   document.body.style.backgroundColor = "white";
   for (var card of productCard) {
@@ -286,7 +293,7 @@ function openViewFromCart(order, arr) {
       console.log("hola");
       console.log(refToOpen);
       viewProduct.innerHTML = vistasPreview[indice];
-      abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
+      abrirCerrar("", desktopMenu, "", mobileMenu, viewProduct);
 
       closeViewProduct = document.querySelector(".product-detail-close");
       buttonAddToCar = document.querySelector(".add-to-cart-button");

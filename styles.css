@@ -239,7 +239,7 @@ aside#shoppingCartContainer {
 .order p:nth-child(1) {
   display: flex;
   flex-direction: column;
-  padding-left: 25px;
+  padding-left: ;
 }
 .order p span:nth-child(1) {
   font-size: var(--md);
@@ -266,6 +266,11 @@ aside#shoppingCartContainer {
   height: 70px;
   border-radius: 20px;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.delete {
+  cursor: pointer;
 }
 .shopping-cart p:nth-child() {
   color: var(--very-light-pink);
@@ -298,7 +303,7 @@ aside#shoppingCartContainer {
 
 .my-order-add {
   overflow-y: scroll;
-  height: 400px;
+  max-height: 400px;
   padding-right: 20px;
 }
 
@@ -430,6 +435,7 @@ aside#productDetail {
   font-weight: bold;
   height: 50px;
   width: 359px;
+  margin-right: 50px;
 }
 
 .primary-button.inactive {
@@ -444,6 +450,7 @@ aside#productDetail {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 aside #productDetail {
@@ -489,6 +496,13 @@ aside #productDetail {
   }
   nav {
     width: 87%;
+  }
+  .my-order-add {
+    max-height: 360px;
+  }
+  aside#shoppingCartContainer {
+    width: 391px;
+    padding: 0px 8px 0px 15px;
   }
 }
 
