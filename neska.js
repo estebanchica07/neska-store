@@ -185,8 +185,19 @@ function renderProducts(coleccion) {
         <div class="product-info-opened">
           <p>${formatoMoneda(product.price)}</p>
           <p>${product.name}</p>
-          <p>With its practical position, this bike also fulfills a decorative function, add your hall or workspace.</p>
-          <button class="primary-button add-to-cart-button">
+          <div class="form-group">
+        <p>Talla</p>
+        <select id="dropdown" class="form-size">
+          <option value="34">34</option>
+          <option value="35">35</option>
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+        </select>
+      </div>
+          <button class="add-to-cart-button">
             <img class="btn-add" src="./icons/add.png" alt="add to cart">
            Añadir a mi carrito           
           </button>
@@ -299,13 +310,13 @@ function AddToCart(ordenDePedido, i, referencia) {
       <p class="product-added">Producto añadido</p>
       <img class="icon-added-view" src="./icons/checked.png" alt="">
       `;
-
     totalOrder.classList.remove("inactive");
     emptyCar.classList.add("inactive");
     addProductCar(myCarOrder);
     buttonAddToCar.style.backgroundColor = "black";
 
     console.log(myCarOrder);
+    buttonAddToCar.disabled = true;
   });
 
   closeButton();

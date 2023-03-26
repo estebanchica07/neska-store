@@ -187,7 +187,7 @@ aside {
 /*Shopping Cart*/
 #shoppingCartContainer {
   padding: 0px 3px 0px 20px;
-  border-radius: 10px;
+
   border: 1px solid rgba(237, 229, 229, 0.956);
   top: 60px;
 }
@@ -217,7 +217,6 @@ aside#shoppingCartContainer {
   align-items: center;
   background-color: var(--text-input-field);
   margin-bottom: 24px;
-  border-radius: 8px;
   padding: 0 24px;
   width: 309px;
 }
@@ -289,7 +288,7 @@ aside#shoppingCartContainer {
   border-radius: 8px;
   border: none;
   color: var(--white);
-  width: 100%;
+  width: 360px;
   cursor: pointer;
   font-size: var(--md);
   font-weight: bold;
@@ -420,7 +419,6 @@ aside#productDetail {
   color: var(--very-light-pink);
   font-size: var(--md);
   margin-top: 0;
-  margin-bottom: 25px;
 }
 .product-info-opened p:nth-child(3) {
   color: var(--very-light-pink);
@@ -428,7 +426,7 @@ aside#productDetail {
   margin-top: 0;
   margin-bottom: 36px;
 }
-.primary-button {
+.add-to-cart-button {
   background-color: var(--hospital-green);
   border-radius: 8px;
   border: none;
@@ -440,6 +438,7 @@ aside#productDetail {
   height: 50px;
   width: 355px;
   margin-right: 50px;
+  margin-bottom: 10px;
 }
 
 .primary-button.inactive {
@@ -478,16 +477,29 @@ aside #productDetail {
   width: 500px;
 }
 
+.form-size {
+  width: 39%;
+  height: 2.2rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  color: #495057;
+  margin-bottom: 15px;
+}
+
 @media (max-width: 640px) {
   .cards-container {
-    grid-template-columns: repeat(auto-fill, 140px);
+    grid-template-columns: repeat(auto-fill, 170px);
   }
   .product-card {
-    width: 140px;
+    width: 170px;
   }
   .product-card img {
-    width: 140px;
-    height: 140px;
+    width: 170px;
+    height: 170px;
   }
   .menu {
     display: block;
@@ -505,11 +517,11 @@ aside #productDetail {
     width: 100%;
   }
   .product-info figure img {
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
   }
   .product-info {
-    margin: 24px 10px 0 10px;
+    margin: 24px 5px 0 5px;
   }
   aside#productDetail {
     width: 350px;
@@ -526,8 +538,15 @@ aside #productDetail {
   }
   .product-info figure {
     display: flex;
-    flex-direction: column;
-    gap: 3px;
+    gap: 5px;
+  }
+
+  .primary-button {
+    width: 96%;
+  }
+
+  .order {
+    width: 83%;
   }
 }
 
