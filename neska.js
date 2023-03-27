@@ -31,7 +31,7 @@ let spanPrice = 0;
 let spanOrder = 0;
 let indice = 0;
 let message = "";
-let messagePre;
+let orderToSend;
 //let refToOpen;
 
 cuentaEmail.addEventListener("click", () =>
@@ -123,11 +123,15 @@ document.addEventListener("keydown", function (e) {
 });
 
 function sendOrder(pedido) {
-  for (var zapato of pedido) {
-    message += `1 par de zapatos Ref: ${zapato.ref}, Talla ${zapato.size}, Precio: ${zapato.price}; `;
-  }
+  orderToSend = `Hola *Calzado Neska*, Me interesan los siguientes productos que vi en la página Web: 
+  `;
   buttonConfirm.addEventListener("click", function () {
-    encodedMessage = encodeURIComponent(message);
+    for (var zapato of pedido) {
+      message += `
+• 1 producto Ref: ${zapato.ref}, Talla ${zapato.size}, Precio: ${formatoMoneda(
+        zapato.price
+      )}`;
+    }
     url = `https://wa.me/${573136113981}?text=${encodedMessage}`;
     window.open(url, "_blank");
   });
@@ -243,6 +247,7 @@ function renderProducts(coleccion) {
       abrirCerrar("", "", "", "", myOrder);
     });
   }
+  sendOrder(myCarOrder);
   vistaPrevia(productImageList, coleccion);
   clickOnBack();
 }
