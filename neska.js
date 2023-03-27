@@ -24,11 +24,14 @@ let productImageList;
 let productCard;
 let addToCardGrid;
 let listItems;
+let size;
 let indiceOpenProduct = 0;
 let refEliminateOrder = 0;
 let spanPrice = 0;
 let spanOrder = 0;
 let indice = 0;
+let message = "";
+let messagePre;
 //let refToOpen;
 
 cuentaEmail.addEventListener("click", () =>
@@ -71,11 +74,12 @@ const abrirCerrar = function (e, m, g, k, l) {
 const productList = [];
 
 class zapatos {
-  constructor(ref, nombre, precio, imagen) {
+  constructor(ref, nombre, precio, imagen, talla) {
     this.ref = ref;
     this.name = nombre;
     this.price = precio;
     this.image = imagen;
+    this.size = talla;
   }
 }
 
@@ -117,6 +121,17 @@ document.addEventListener("keydown", function (e) {
     openBack();
   }
 });
+
+function sendOrder(pedido) {
+  for (var zapato of pedido) {
+    message += `1 par de zapatos Ref: ${zapato.ref}, Talla ${zapato.size}, Precio: ${zapato.price}; `;
+  }
+  buttonConfirm.addEventListener("click", function () {
+    encodedMessage = encodeURIComponent(message);
+    url = `https://wa.me/${573136113981}?text=${encodedMessage}`;
+    window.open(url, "_blank");
+  });
+}
 
 function openBack() {
   document.body.style.backgroundColor = "white";
@@ -170,7 +185,7 @@ function renderProducts(coleccion) {
           </div>
           <figure>
           <img class="icon-added inactive" src="./icons/checked.png" alt="">
-          <img class="add-to-cart-grid" src="./icons/bt_add_to_cart.svg" alt="">
+          <!--<img class="add-to-cart-grid" src="./icons/bt_add_to_cart.svg" alt="">-->
           </figure>
         </div>
       </div>
@@ -186,17 +201,17 @@ function renderProducts(coleccion) {
           <p>${formatoMoneda(product.price)}</p>
           <p>${product.name}</p>
           <div class="form-group">
-        <p>Talla</p>
-        <select id="dropdown" class="form-size">
-          <option value="34">34</option>
-          <option value="35">35</option>
-          <option value="36">36</option>
-          <option value="37">37</option>
-          <option value="38">38</option>
-          <option value="39">39</option>
-          <option value="40">40</option>
-        </select>
-      </div>
+          <p>Talla</p>
+            <select id="dropdown" class="form-size">
+              <option value="34">34</option>
+              <option value="35">35</option>
+              <option value="36">36</option>
+              <option value="37">37</option>
+              <option value="38">38</option>
+              <option value="39">39</option>
+              <option value="40">40</option>
+            </select>
+          </div>
           <button class="add-to-cart-button">
             <img class="btn-add" src="./icons/add.png" alt="add to cart">
            Añadir a mi carrito           
@@ -242,6 +257,7 @@ function addProductCar(ordenDePedido) {
             <img src="${product.image}" alt="${product.name}">
           </figure>
           <p>${product.name}</p>
+          <p>Talla: ${product.size}</p>
           <p>${formatoMoneda(product.price)}</p>
           <img class="delete" src="./icons/icon_close.png" alt="close">
         </div>
@@ -268,7 +284,7 @@ function vistaPrevia(listaImagenes, coleccion) {
 
     listaImagenes[i].addEventListener("click", () => {
       viewProduct.innerHTML = vistasPreview[i];
-
+      size = document.querySelector("#dropdown");
       abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
       AddToCart(coleccion, i, refAddedOrder);
       clickOnOrder();
@@ -286,6 +302,7 @@ function openViewFromCart(imagesCart, ordenDePedido) {
     openImage.addEventListener("click", function () {
       getIndex(refToOpen);
       viewProduct.innerHTML = vistasPreview[indice];
+      size = document.querySelector("#dropdown");
       abrirCerrar("", desktopMenu, "", mobileMenu, viewProduct);
 
       AddToCart(ordenDePedido, i, refAddedOrder);
@@ -303,6 +320,7 @@ function AddToCart(ordenDePedido, i, referencia) {
       name: ordenDePedido[i].name,
       price: ordenDePedido[i].price,
       image: ordenDePedido[i].image,
+      size: size.value,
     });
     addBtnAdded(referencia);
     buttonConfirm.classList.remove("inactive");

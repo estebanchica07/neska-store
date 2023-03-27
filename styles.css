@@ -194,7 +194,7 @@ aside {
 
 aside#shoppingCartContainer {
   position: fixed;
-  width: 400px;
+  width: 430px;
 }
 
 .title-container {
@@ -218,7 +218,7 @@ aside#shoppingCartContainer {
   background-color: var(--text-input-field);
   margin-bottom: 24px;
   padding: 0 24px;
-  width: 309px;
+  width: 338px;
 }
 
 .order.inactive {
@@ -255,8 +255,8 @@ aside#shoppingCartContainer {
 }
 .shopping-cart {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
-  gap: 16px;
+  grid-template-columns: auto 1fr auto auto auto;
+  gap: 19px;
   margin-bottom: 24px;
   align-items: center;
   margin-top: 10px;
@@ -288,7 +288,7 @@ aside#shoppingCartContainer {
   border-radius: 8px;
   border: none;
   color: var(--white);
-  width: 360px;
+  width: 387px;
   cursor: pointer;
   font-size: var(--md);
   font-weight: bold;
@@ -454,7 +454,7 @@ aside#productDetail {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding-right: 15px;
+  padding-right: 30px;
   gap: 10px;
   padding-top: 5px;
 }
@@ -488,6 +488,7 @@ aside #productDetail {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   color: #495057;
   margin-bottom: 15px;
+  font-size: 15px;
 }
 
 @media (max-width: 640px) {
@@ -542,11 +543,11 @@ aside #productDetail {
   }
 
   .primary-button {
-    width: 96%;
+    width: 97%;
   }
 
   .order {
-    width: 83%;
+    width: 85%;
   }
 }
 
