@@ -20,6 +20,7 @@ const casualesStyles = document.querySelectorAll(".casuales");
 const taconesStyles = document.querySelectorAll(".tacones");
 const botinesStyles = document.querySelectorAll(".botines");
 const baletasStyles = document.querySelectorAll(".baletas");
+const sandaliasStyles = document.querySelectorAll(".sandalias");
 
 let deleteProduct;
 let buttonAddToCar;
@@ -80,12 +81,6 @@ const abrirCerrar = function (e, m, g, k, l) {
 };
 
 const productList = [];
-const deportivos = [];
-const tacones = [];
-const casuales = [];
-const botines = [];
-const baletas = [];
-
 class zapatos {
   constructor(refe, nombre, precio, imagen, talla) {
     this.ref = refe;
@@ -96,43 +91,126 @@ class zapatos {
   }
 }
 
-let n702 = new zapatos(702, "Deportivo", 95000, "./images/702.jpg");
-let n636 = new zapatos(636, "Deportivo", 95000, "./images/636.jpg");
-let n709 = new zapatos(709, "Deportivo", 100000, "./images/709.jpg");
-let n534 = new zapatos(534, "Botín", 95000, "./images/534.jpg");
-let n604 = new zapatos(604, "Casual", 95000, "./images/604.jpg");
-let n585 = new zapatos(585, "Tacón", 95000, "./images/585.jpg");
-let n637 = new zapatos(637, "Deportivo", 95000, "./images/637.jpg");
-let n701 = new zapatos(701, "Deportivo", 95000, "./images/701.jpg");
-let n710 = new zapatos(710, "Deportivo", 95000, "./images/710.jpg");
-let n809 = new zapatos(809, "Botín", 95000, "./images/809.jpeg");
-let n827 = new zapatos(827, "Tacón", 95000, "./images/827.jpeg");
-let n770 = new zapatos(770, "Casual", 95000, "./images/770.jpeg");
-let n277 = new zapatos(227, "Deportivo", 95000, "./images/277.jpeg");
-let n887 = new zapatos(887, "Baleta", 95000, "./images/887.jpeg");
-
-deportivos.push(n702, n636, n709, n637, n701, n710, n277);
-tacones.push(n827, n585);
-casuales.push(n604, n770);
-botines.push(n534, n809);
-baletas.push(n887);
+const n702 = new zapatos(702, "Deportivo", 95000, "./images/702.jpg");
+const n636 = new zapatos(636, "Deportivo", 95000, "./images/636.jpg");
+const n709 = new zapatos(709, "Deportivo", 100000, "./images/709.jpg");
+const n637 = new zapatos(637, "Deportivo", 95000, "./images/637.jpg");
+const n701 = new zapatos(701, "Deportivo", 95000, "./images/701.jpg");
+const n710 = new zapatos(710, "Deportivo", 95000, "./images/710.jpg");
+const n855 = new zapatos(855, "Deportivo", 95000, "./images/855.jpg");
+const n638 = new zapatos(638, "Deportivo", 95000, "./images/638.jpg");
+const n277 = new zapatos(277, "Deportivo", 95000, "./images/277.jpeg");
+const n797 = new zapatos(797, "Deportivo", 95000, "./images/797.jpeg");
+const n817 = new zapatos(817, "Deportivo", 95000, "./images/817.jpeg");
+const n819 = new zapatos(819, "Deportivo", 95000, "./images/819.jpeg");
+const n712 = new zapatos(712, "Deportivo", 95000, "./images/712.jpg");
+const n852 = new zapatos(852, "Deportivo", 95000, "./images/852.jpg");
+const n801 = new zapatos(801, "Deportivo", 95000, "./images/801.jpg");
+const n741 = new zapatos(741, "Deportivo", 95000, "./images/741.jpg");
+const n736 = new zapatos(736, "Deportivo", 95000, "./images/736.jpg");
+const n746 = new zapatos(746, "Deportivo", 95000, "./images/746.jpg");
+const n758 = new zapatos(758, "Deportivo", 95000, "./images/758.jpg");
+const n759 = new zapatos(759, "Deportivo", 95000, "./images/759.jpg");
+const n768 = new zapatos(768, "Deportivo", 95000, "./images/768.jpg");
+const n604 = new zapatos(604, "Casual", 95000, "./images/604.jpg");
+const n749 = new zapatos(749, "Casual", 95000, "./images/749.jpg");
+const n750 = new zapatos(750, "Casual", 95000, "./images/750.jpg");
+const n770 = new zapatos(770, "Casual", 95000, "./images/770.jpeg");
+const n773 = new zapatos(773, "Casual", 95000, "./images/773.jpg");
+const n856 = new zapatos(856, "Casual", 95000, "./images/856.jpg");
+const n823 = new zapatos(823, "Casual", 95000, "./images/823.jpeg");
+const n599 = new zapatos(599, "Casual", 95000, "./images/599.jpg");
+const n827 = new zapatos(827, "Tacón", 95000, "./images/827.jpeg");
+const n302 = new zapatos(302, "Tacón", 95000, "./images/302.jpeg");
+const n585 = new zapatos(585, "Tacón", 95000, "./images/585.jpg");
+const n829 = new zapatos(829, "Tacón", 95000, "./images/829.jpeg");
+const n858 = new zapatos(858, "Tacón", 95000, "./images/858.jpg");
+const n828 = new zapatos(828, "Tacón", 95000, "./images/828.jpeg");
+const n676 = new zapatos(676, "Tacón", 95000, "./images/676.jpeg");
+const n337 = new zapatos(337, "Tacón", 95000, "./images/337.jpg");
+const n534 = new zapatos(534, "Botín", 95000, "./images/534.jpg");
+const n809 = new zapatos(809, "Botín", 95000, "./images/809.jpeg");
+const n722 = new zapatos(722, "Botín", 95000, "./images/722.jpg");
+const n723 = new zapatos(723, "Botín", 95000, "./images/723.jpg");
+const n887 = new zapatos(887, "Baleta", 95000, "./images/887.jpeg");
+const n971 = new zapatos(971, "Baleta", 95000, "./images/971.jpeg");
+const n793 = new zapatos(793, "Baleta", 95000, "./images/793.jpeg");
+const n888 = new zapatos(888, "Baleta", 95000, "./images/888.jpeg");
+const n903 = new zapatos(903, "Baleta", 95000, "./images/903.jpg");
+const n976 = new zapatos(976, "Baleta", 95000, "./images/976.jpg");
+const n766 = new zapatos(766, "Sandalia", 95000, "./images/766.jpg");
+const n767 = new zapatos(767, "Sandalia", 95000, "./images/767.jpg");
 
 productList.push(
   n702,
   n636,
   n709,
-  n534,
-  n604,
-  n585,
   n637,
   n701,
   n710,
-  n809,
-  n827,
-  n770,
+  n855,
+  n638,
   n277,
-  n887
+  n797,
+  n817,
+  n819,
+  n712,
+  n852,
+  n801,
+  n741,
+  n736,
+  n746,
+  n758,
+  n759,
+  n768,
+  n604,
+  n749,
+  n750,
+  n770,
+  n773,
+  n856,
+  n823,
+  n599,
+  n827,
+  n302,
+  n585,
+  n829,
+  n858,
+  n828,
+  n676,
+  n337,
+  n534,
+  n809,
+  n887,
+  n971,
+  n793,
+  n766,
+  n767,
+  n722,
+  n723,
+  n888,
+  n903,
+  n976
 );
+
+const deportivos = productList.filter(function (articulo) {
+  return articulo.name === "Deportivo";
+});
+const casuales = productList.filter(function (articulo) {
+  return articulo.name === "Casual";
+});
+const tacones = productList.filter(function (articulo) {
+  return articulo.name === "Tacón";
+});
+const botines = productList.filter(function (articulo) {
+  return articulo.name === "Botín";
+});
+const baletas = productList.filter(function (articulo) {
+  return articulo.name === "Baleta";
+});
+const sandalias = productList.filter(function (articulo) {
+  return articulo.name === "Sandalia";
+});
 
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
@@ -291,6 +369,7 @@ printComponent(casualesStyles, casuales);
 printComponent(taconesStyles, tacones);
 printComponent(botinesStyles, botines);
 printComponent(baletasStyles, baletas);
+printComponent(sandaliasStyles, sandalias);
 
 function printComponent(componentLine, productsLine) {
   for (var design of componentLine) {
@@ -301,6 +380,7 @@ function printComponent(componentLine, productsLine) {
 }
 
 function AddToComponent(styles) {
+  vistasPreview = [];
   cardsContainer.innerHTML = "";
   renderProducts(styles);
 }
