@@ -21,6 +21,13 @@ const taconesStyles = document.querySelectorAll(".tacones");
 const botinesStyles = document.querySelectorAll(".botines");
 const baletasStyles = document.querySelectorAll(".baletas");
 const sandaliasStyles = document.querySelectorAll(".sandalias");
+const deportivosLine = document.querySelector("#deportivos");
+const allProductsLine = document.querySelector("#allProducts");
+const casualesLine = document.querySelector("#casuales");
+const taconesLine = document.querySelector("#tacones");
+const botinesLine = document.querySelector("#botines");
+const baletasLine = document.querySelector("#baletas");
+const sandaliasLine = document.querySelector("#sandalias");
 
 let deleteProduct;
 let buttonAddToCar;
@@ -363,18 +370,19 @@ function renderProducts(coleccion) {
 
 AddToComponent(productList);
 
-printComponent(allProducts, productList);
-printComponent(deportivosStyles, deportivos);
-printComponent(casualesStyles, casuales);
-printComponent(taconesStyles, tacones);
-printComponent(botinesStyles, botines);
-printComponent(baletasStyles, baletas);
-printComponent(sandaliasStyles, sandalias);
+printComponent(allProducts, productList, allProducts);
+printComponent(deportivosStyles, deportivos, deportivosLine);
+printComponent(casualesStyles, casuales, casualesLine);
+printComponent(taconesStyles, tacones, taconesLine);
+printComponent(botinesStyles, botines, botinesLine);
+printComponent(baletasStyles, baletas, baletasLine);
+printComponent(sandaliasStyles, sandalias, sandaliasLine);
 
-function printComponent(componentLine, productsLine) {
+function printComponent(componentLine, productsLine, idLine) {
   for (var design of componentLine) {
     design.addEventListener("click", () => {
       AddToComponent(productsLine);
+      idLine.classList.add("line-select");
     });
   }
 }
