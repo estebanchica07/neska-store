@@ -96,6 +96,10 @@ nav {
   align-items: center;
 }
 
+.lines {
+  cursor: pointer;
+}
+
 /*Menu Desktop*/
 
 .desktop-menu {

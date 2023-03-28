@@ -14,6 +14,12 @@ const totalOrder = document.querySelector(".order");
 const emptyCar = document.querySelector(".empty-order");
 const totalPrice = document.querySelector(".total-price");
 const quantityOrder = document.querySelector(".quantity-order");
+const allProducts = document.querySelectorAll(".all-products");
+const deportivosStyles = document.querySelectorAll(".deportivos");
+const casualesStyles = document.querySelectorAll(".casuales");
+const taconesStyles = document.querySelectorAll(".tacones");
+const botinesStyles = document.querySelectorAll(".botines");
+const baletasStyles = document.querySelectorAll(".baletas");
 
 let deleteProduct;
 let buttonAddToCar;
@@ -33,6 +39,7 @@ let indice = 0;
 let message = "";
 let orderToSend;
 let totalOrderToSend;
+let emptyArray = [];
 //let refToOpen;
 
 cuentaEmail.addEventListener("click", () =>
@@ -73,10 +80,15 @@ const abrirCerrar = function (e, m, g, k, l) {
 };
 
 const productList = [];
+const deportivos = [];
+const tacones = [];
+const casuales = [];
+const botines = [];
+const baletas = [];
 
 class zapatos {
-  constructor(ref, nombre, precio, imagen, talla) {
-    this.ref = ref;
+  constructor(refe, nombre, precio, imagen, talla) {
+    this.ref = refe;
     this.name = nombre;
     this.price = precio;
     this.image = imagen;
@@ -98,6 +110,12 @@ let n827 = new zapatos(827, "Tacón", 95000, "./images/827.jpeg");
 let n770 = new zapatos(770, "Casual", 95000, "./images/770.jpeg");
 let n277 = new zapatos(227, "Deportivo", 95000, "./images/277.jpeg");
 let n887 = new zapatos(887, "Baleta", 95000, "./images/887.jpeg");
+
+deportivos.push(n702, n636, n709, n637, n701, n710, n277);
+tacones.push(n827, n585);
+casuales.push(n604, n770);
+botines.push(n534, n809);
+baletas.push(n887);
 
 productList.push(
   n702,
@@ -265,7 +283,27 @@ function renderProducts(coleccion) {
   clickOnBack();
 }
 
-renderProducts(productList);
+AddToComponent(productList);
+
+printComponent(allProducts, productList);
+printComponent(deportivosStyles, deportivos);
+printComponent(casualesStyles, casuales);
+printComponent(taconesStyles, tacones);
+printComponent(botinesStyles, botines);
+printComponent(baletasStyles, baletas);
+
+function printComponent(componentLine, productsLine) {
+  for (var design of componentLine) {
+    design.addEventListener("click", () => {
+      AddToComponent(productsLine);
+    });
+  }
+}
+
+function AddToComponent(styles) {
+  cardsContainer.innerHTML = "";
+  renderProducts(styles);
+}
 
 function addProductCar(ordenDePedido) {
   ordenDePedido.forEach((product) => {
@@ -298,8 +336,7 @@ function addProductCar(ordenDePedido) {
 
 function vistaPrevia(listaImagenes, coleccion) {
   for (let i = 0; i < listaImagenes.length; i++) {
-    let refAddedOrder = productList[i].ref;
-
+    let refAddedOrder = coleccion[i].ref;
     listaImagenes[i].addEventListener("click", () => {
       viewProduct.innerHTML = vistasPreview[i];
       size = document.querySelector("#dropdown");
