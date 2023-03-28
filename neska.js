@@ -124,19 +124,24 @@ document.addEventListener("keydown", function (e) {
 });
 
 function sendOrder(pedido) {
-  orderToSend = `Hola *Calzado Neska*, Me interesan los siguientes productos que vi en la página Web: 
+  orderToSend = `Hola *Calzado Neska*, me interesan los siguientes productos que vi en la página Web: 
   `;
   totalOrderToSend = `
-  Para un total de ${formatoMoneda(spanPrice)}
-  
-  Gracias por la información`;
-  buttonConfirm.addEventListener("click", function () {
-    for (var zapato of pedido) {
-      message += `
+
+Para un total de *${formatoMoneda(spanPrice)}*
+
+Gracias por la información.`;
+
+  for (var zapato of pedido) {
+    eachMessage = `
 • 1 producto Ref: ${zapato.ref}, Talla ${zapato.size}, Precio: ${formatoMoneda(
-        zapato.price
-      )}`;
-    }
+      zapato.price
+    )}`;
+  }
+
+  message += eachMessage;
+
+  buttonConfirm.addEventListener("click", function () {
     encodedMessage = encodeURIComponent(
       orderToSend + message + totalOrderToSend
     );
@@ -156,7 +161,7 @@ function openBack() {
 }
 
 function formatoMoneda(valor) {
-  let convertirMoneda = `$ ${valor.toLocaleString()}`;
+  let convertirMoneda = `$${valor.toLocaleString()}`;
   return convertirMoneda;
 }
 
@@ -328,26 +333,30 @@ function AddToCart(ordenDePedido, i, referencia) {
   buttonAddToCar = document.querySelector(".add-to-cart-button");
 
   buttonAddToCar.addEventListener("click", () => {
-    myCarOrder.push({
-      ref: ordenDePedido[i].ref,
-      name: ordenDePedido[i].name,
-      price: ordenDePedido[i].price,
-      image: ordenDePedido[i].image,
-      size: size.value,
-    });
-    addBtnAdded(referencia);
-    buttonConfirm.classList.remove("inactive");
     buttonAddToCar.innerHTML = `
-      <p class="product-added">Producto añadido</p>
-      <img class="icon-added-view" src="./icons/checked.png" alt="">
-      `;
-    totalOrder.classList.remove("inactive");
-    emptyCar.classList.add("inactive");
-    addProductCar(myCarOrder);
+    <p class="product-added">Producto añadido</p>
+    <img class="icon-added-view" src="./icons/checked.png" alt="">
+    `;
     buttonAddToCar.style.backgroundColor = "black";
-
-    console.log(myCarOrder);
     buttonAddToCar.disabled = true;
+    setTimeout(function () {
+      myCarOrder.push({
+        ref: ordenDePedido[i].ref,
+        name: ordenDePedido[i].name,
+        price: ordenDePedido[i].price,
+        image: ordenDePedido[i].image,
+        size: size.value,
+      });
+      addBtnAdded(referencia);
+      buttonConfirm.classList.remove("inactive");
+      totalOrder.classList.remove("inactive");
+      emptyCar.classList.add("inactive");
+      addProductCar(myCarOrder);
+
+      console.log(myCarOrder);
+      abrirCerrar("", viewProduct, "", "", "");
+      openBack();
+    }, 900);
   });
 
   closeButton();
