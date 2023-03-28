@@ -251,7 +251,7 @@ aside#shoppingCartContainer {
 .order p:nth-child(2) {
   text-align: end;
   font-weight: bold;
-  padding-right: 25px;
+  padding-right: 27px;
 }
 .shopping-cart {
   display: grid;
@@ -548,6 +548,10 @@ aside #productDetail {
 
   .order {
     width: 85%;
+  }
+
+  .order p:nth-child(2) {
+    padding-right: 18px;
   }
 }
 

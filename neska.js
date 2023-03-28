@@ -32,6 +32,7 @@ let spanOrder = 0;
 let indice = 0;
 let message = "";
 let orderToSend;
+let totalOrderToSend;
 //let refToOpen;
 
 cuentaEmail.addEventListener("click", () =>
@@ -125,6 +126,10 @@ document.addEventListener("keydown", function (e) {
 function sendOrder(pedido) {
   orderToSend = `Hola *Calzado Neska*, Me interesan los siguientes productos que vi en la página Web: 
   `;
+  totalOrderToSend = `
+  Para un total de ${formatoMoneda(spanPrice)}
+  
+  Gracias por la información`;
   buttonConfirm.addEventListener("click", function () {
     for (var zapato of pedido) {
       message += `
@@ -132,7 +137,10 @@ function sendOrder(pedido) {
         zapato.price
       )}`;
     }
-    url = `https://wa.me/${573136113981}?text=${encodedMessage}`;
+    encodedMessage = encodeURIComponent(
+      orderToSend + message + totalOrderToSend
+    );
+    url = `https://wa.me/${573107675471}?text=${encodedMessage}`;
     window.open(url, "_blank");
   });
 }
@@ -247,7 +255,7 @@ function renderProducts(coleccion) {
       abrirCerrar("", "", "", "", myOrder);
     });
   }
-  sendOrder(myCarOrder);
+
   vistaPrevia(productImageList, coleccion);
   clickOnBack();
 }
@@ -278,7 +286,7 @@ function addProductCar(ordenDePedido) {
 
   spanPrice += precioProduct;
   totalPrice.innerHTML = formatoMoneda(spanPrice);
-
+  sendOrder(myCarOrder);
   spanOrder++;
   quantityOrder.innerHTML = spanOrder;
 }
