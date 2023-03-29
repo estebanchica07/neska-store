@@ -355,7 +355,7 @@ function printComponent(componentLine, productsLine) {
   for (const design of componentLine) {
     design.addEventListener("click", () => {
       AddToComponent(productsLine);
-      abrirCerrar("", viewProduct, "", "", "");
+      abrirCerrar("", viewProduct, mobileMenu, "", "");
       openBack();
     });
   }
@@ -419,13 +419,17 @@ function openViewFromCart(imagesCart, coleccion) {
       getIndex(refToOpen, coleccion);
       viewProduct.innerHTML = vistasPreview[indice];
       size = document.querySelector("#dropdown");
-      abrirCerrar("", desktopMenu, "", mobileMenu, viewProduct);
+      abrirCerrar(viewProduct, desktopMenu, "", mobileMenu, "");
       buttonAddToCar = document.querySelector(".add-to-cart-button");
       dropSize = document.querySelector(".form-group");
       buttonAddToCar.classList.add("inactive");
       dropSize.classList.add("inactive");
       closeViewProduct = document.querySelector(".product-detail-close");
       closeButton();
+      document.body.style.backgroundColor = "#DAD8D8";
+      for (var card of productCard) {
+        card.classList.add("backProductCard");
+      }
     });
   }
 }
@@ -449,7 +453,6 @@ function AddToCart(coleccion, i, referencia) {
       image: coleccion[i].image,
       size: size.value,
     });
-    debugger;
     //addBtnAdded(referencia, coleccion);
     buttonConfirm.classList.remove("inactive");
     totalOrder.classList.remove("inactive");
@@ -459,7 +462,7 @@ function AddToCart(coleccion, i, referencia) {
     setTimeout(function () {
       abrirCerrar("", viewProduct, "", "", "");
       openBack();
-    }, 900);
+    }, 800);
   });
 
   closeButton();
