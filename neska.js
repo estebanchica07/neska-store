@@ -398,12 +398,11 @@ function addProductCar(ordenDePedido, coleccion) {
 
 function vistaPrevia(listaImagenes, coleccion) {
   for (let i = 0; i < listaImagenes.length; i++) {
-    let refAddedOrder = coleccion[i].ref;
     listaImagenes[i].addEventListener("click", () => {
       viewProduct.innerHTML = vistasPreview[i];
       size = document.querySelector("#dropdown");
       abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
-      AddToCart(coleccion, i, refAddedOrder);
+      AddToCart(coleccion, i);
       clickOnOrder();
     });
   }
@@ -434,7 +433,7 @@ function openViewFromCart(imagesCart, coleccion) {
   }
 }
 
-function AddToCart(coleccion, i, referencia) {
+function AddToCart(coleccion, i) {
   closeViewProduct = document.querySelector(".product-detail-close");
   buttonAddToCar = document.querySelector(".add-to-cart-button");
 
