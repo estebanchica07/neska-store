@@ -34,15 +34,12 @@ let addToCardGrid;
 let listItems;
 let size;
 let indiceOpenProduct = 0;
-let refEliminateOrder = 0;
 let spanPrice = 0;
 let spanOrder = 0;
 let indice = 0;
 let message = "";
 let orderToSend;
 let totalOrderToSend;
-let emptyArray = [];
-//let refToOpen;
 
 cuentaEmail.addEventListener("click", () =>
   abrirCerrar(desktopMenu, myOrder, viewProduct, mobileMenu, "")
@@ -478,7 +475,6 @@ function removeOrder(order) {
     let closeBoton = order[i].getElementsByTagName("img")[1];
     let positionArray = myCarOrder[i]; // Seleccionar el elemento del array para después utilizarlo como Index y así eliminarlo por splice
     let priceEliminateOrder = myCarOrder[i].price;
-    let refEliminateOrder = myCarOrder[i].ref;
 
     closeBoton.addEventListener("click", function () {
       this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
