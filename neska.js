@@ -22,12 +22,6 @@ const botinesStyles = document.querySelectorAll(".botines");
 const baletasStyles = document.querySelectorAll(".baletas");
 const sandaliasStyles = document.querySelectorAll(".sandalias");
 const deportivosLine = document.querySelector("#deportivos");
-const allProductsLine = document.querySelector("#allProducts");
-const casualesLine = document.querySelector("#casuales");
-const taconesLine = document.querySelector("#tacones");
-const botinesLine = document.querySelector("#botines");
-const baletasLine = document.querySelector("#baletas");
-const sandaliasLine = document.querySelector("#sandalias");
 
 let deleteProduct;
 let buttonAddToCar;
@@ -346,43 +340,26 @@ function renderProducts(coleccion) {
   addToCardGrid = document.getElementsByClassName("add-to-cart-grid");
   iconAdded = document.getElementsByClassName("icon-added");
 
-  for (let i = 0; i < addToCardGrid.length; i++) {
-    addToCardGrid[i].addEventListener("click", () => {
-      myCarOrder.push({
-        ref: coleccion[i].ref,
-        name: coleccion[i].name,
-        price: coleccion[i].price,
-        image: coleccion[i].image,
-      });
-      console.log(myCarOrder);
-      addProductCar(myCarOrder);
-      buttonConfirm.classList.remove("inactive");
-      totalOrder.classList.remove("inactive");
-      emptyCar.classList.add("inactive");
-      iconAdded[i].classList.remove("inactive");
-      abrirCerrar("", "", "", "", myOrder);
-    });
-  }
-
   vistaPrevia(productImageList, coleccion);
   clickOnBack();
 }
 
 AddToComponent(productList);
 
-printComponent(allProducts, productList, allProducts);
-printComponent(deportivosStyles, deportivos, deportivosLine);
-printComponent(casualesStyles, casuales, casualesLine);
-printComponent(taconesStyles, tacones, taconesLine);
-printComponent(botinesStyles, botines, botinesLine);
-printComponent(baletasStyles, baletas, baletasLine);
-printComponent(sandaliasStyles, sandalias, sandaliasLine);
+printComponent(allProducts, productList);
+printComponent(deportivosStyles, deportivos);
+printComponent(casualesStyles, casuales);
+printComponent(taconesStyles, tacones);
+printComponent(botinesStyles, botines);
+printComponent(baletasStyles, baletas);
+printComponent(sandaliasStyles, sandalias);
 
-function printComponent(componentLine, productsLine, idLine) {
-  for (var design of componentLine) {
+function printComponent(componentLine, productsLine) {
+  for (const design of componentLine) {
     design.addEventListener("click", () => {
       AddToComponent(productsLine);
-      idLine.classList.add("line-select");
+      abrirCerrar("", viewProduct, "", "", "");
+      openBack();
     });
   }
 }
@@ -393,7 +370,7 @@ function AddToComponent(styles) {
   renderProducts(styles);
 }
 
-function addProductCar(ordenDePedido) {
+function addProductCar(ordenDePedido, coleccion) {
   ordenDePedido.forEach((product) => {
     productAdded = `
         <div class="shopping-cart">
@@ -412,7 +389,7 @@ function addProductCar(ordenDePedido) {
   contenMyOrder.innerHTML += productAdded;
 
   listItems = contenMyOrder.getElementsByTagName("div");
-  openViewFromCart(listItems, ordenDePedido);
+  openViewFromCart(listItems, coleccion);
   removeOrder(listItems);
 
   spanPrice += precioProduct;
@@ -436,49 +413,53 @@ function vistaPrevia(listaImagenes, coleccion) {
 }
 
 //debo unificar estas dos funciones openViewFromCart y vistaPrevia
-function openViewFromCart(imagesCart, ordenDePedido) {
+function openViewFromCart(imagesCart, coleccion) {
   for (let i = 0; i < imagesCart.length; i++) {
-    let refAddedOrder = productList[i].ref;
     let openImage = imagesCart[i].getElementsByTagName("img")[0];
     let refToOpen = myCarOrder[i].ref;
 
     openImage.addEventListener("click", function () {
-      getIndex(refToOpen);
+      getIndex(refToOpen, coleccion);
       viewProduct.innerHTML = vistasPreview[indice];
       size = document.querySelector("#dropdown");
       abrirCerrar("", desktopMenu, "", mobileMenu, viewProduct);
-
-      AddToCart(ordenDePedido, i, refAddedOrder);
+      buttonAddToCar = document.querySelector(".add-to-cart-button");
+      dropSize = document.querySelector(".form-group");
+      buttonAddToCar.classList.add("inactive");
+      dropSize.classList.add("inactive");
+      closeViewProduct = document.querySelector(".product-detail-close");
+      closeButton();
     });
   }
 }
 
-function AddToCart(ordenDePedido, i, referencia) {
+function AddToCart(coleccion, i, referencia) {
   closeViewProduct = document.querySelector(".product-detail-close");
   buttonAddToCar = document.querySelector(".add-to-cart-button");
 
   buttonAddToCar.addEventListener("click", () => {
     buttonAddToCar.innerHTML = `
-    <p class="product-added">Producto añadido</p>
     <img class="icon-added-view" src="./icons/checked.png" alt="">
+    <p class="product-added">Producto añadido</p>
     `;
+    buttonAddToCar.style.paddingRight = "10px";
     buttonAddToCar.style.backgroundColor = "black";
     buttonAddToCar.disabled = true;
+    myCarOrder.push({
+      ref: coleccion[i].ref,
+      name: coleccion[i].name,
+      price: coleccion[i].price,
+      image: coleccion[i].image,
+      size: size.value,
+    });
+    debugger;
+    //addBtnAdded(referencia, coleccion);
+    buttonConfirm.classList.remove("inactive");
+    totalOrder.classList.remove("inactive");
+    emptyCar.classList.add("inactive");
+    console.log(myCarOrder);
+    addProductCar(myCarOrder, coleccion);
     setTimeout(function () {
-      myCarOrder.push({
-        ref: ordenDePedido[i].ref,
-        name: ordenDePedido[i].name,
-        price: ordenDePedido[i].price,
-        image: ordenDePedido[i].image,
-        size: size.value,
-      });
-      addBtnAdded(referencia);
-      buttonConfirm.classList.remove("inactive");
-      totalOrder.classList.remove("inactive");
-      emptyCar.classList.add("inactive");
-      addProductCar(myCarOrder);
-
-      console.log(myCarOrder);
       abrirCerrar("", viewProduct, "", "", "");
       openBack();
     }, 900);
@@ -518,27 +499,19 @@ function removeOrder(order) {
         buttonConfirm.classList.add("inactive");
         abrirCerrar("", myOrder, "", "", "");
       }
-      removeBtnAdded(refEliminateOrder);
     });
   }
 }
 
-function removeBtnAdded(refRemoved) {
-  let indiceRemovedProduct = productList.findIndex(function (zapato) {
-    return zapato.ref === +refRemoved;
-  });
-  iconAdded[indiceRemovedProduct].classList.add("inactive");
-}
+// function addBtnAdded(refAdded, coleccion) {
+//   let indiceAddedProduct = coleccion.findIndex(function (zapato) {
+//     return zapato.ref === +refAdded;
+//   });
+//   iconAdded[indiceAddedProduct].classList.remove("inactive");
+// }
 
-function addBtnAdded(refAdded) {
-  let indiceAddedProduct = productList.findIndex(function (zapato) {
-    return zapato.ref === +refAdded;
-  });
-  iconAdded[indiceAddedProduct].classList.remove("inactive");
-}
-
-function getIndex(refOpen) {
-  let indiceOpenProduct = productList.findIndex(function (zapato) {
+function getIndex(refOpen, coleccion) {
+  let indiceOpenProduct = coleccion.findIndex(function (zapato) {
     return zapato.ref === +refOpen;
   });
   indice = indiceOpenProduct;
