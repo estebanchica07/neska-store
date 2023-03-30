@@ -22,24 +22,24 @@ const botinesStyles = document.querySelectorAll(".botines");
 const baletasStyles = document.querySelectorAll(".baletas");
 const sandaliasStyles = document.querySelectorAll(".sandalias");
 const deportivosLine = document.querySelector("#deportivos");
+const myCarOrder = [];
+const spaceHtml = document.querySelector(".html");
 
 let deleteProduct;
 let buttonAddToCar;
 let vistasPreview = [];
-let myCarOrder = [];
 let closeViewProduct;
 let productImageList;
 let productCard;
 let addToCardGrid;
 let listItems;
 let size;
-let indiceOpenProduct = 0;
 let spanPrice = 0;
 let spanOrder = 0;
-let indice = 0;
 let message = "";
 let orderToSend;
 let totalOrderToSend;
+let openImage;
 
 cuentaEmail.addEventListener("click", () =>
   abrirCerrar(desktopMenu, myOrder, viewProduct, mobileMenu, "")
@@ -89,106 +89,56 @@ class zapatos {
   }
 }
 
-const n702 = new zapatos(702, "Deportivo", 95000, "./images/702.jpg");
-const n636 = new zapatos(636, "Deportivo", 95000, "./images/636.jpg");
-const n709 = new zapatos(709, "Deportivo", 100000, "./images/709.jpg");
-const n637 = new zapatos(637, "Deportivo", 95000, "./images/637.jpg");
-const n701 = new zapatos(701, "Deportivo", 95000, "./images/701.jpg");
-const n710 = new zapatos(710, "Deportivo", 95000, "./images/710.jpg");
-const n855 = new zapatos(855, "Deportivo", 95000, "./images/855.jpg");
-const n638 = new zapatos(638, "Deportivo", 95000, "./images/638.jpg");
-const n277 = new zapatos(277, "Deportivo", 95000, "./images/277.jpeg");
-const n797 = new zapatos(797, "Deportivo", 95000, "./images/797.jpeg");
-const n817 = new zapatos(817, "Deportivo", 95000, "./images/817.jpeg");
-const n819 = new zapatos(819, "Deportivo", 95000, "./images/819.jpeg");
-const n712 = new zapatos(712, "Deportivo", 95000, "./images/712.jpg");
-const n852 = new zapatos(852, "Deportivo", 95000, "./images/852.jpg");
-const n801 = new zapatos(801, "Deportivo", 95000, "./images/801.jpg");
-const n741 = new zapatos(741, "Deportivo", 95000, "./images/741.jpg");
-const n736 = new zapatos(736, "Deportivo", 95000, "./images/736.jpg");
-const n746 = new zapatos(746, "Deportivo", 95000, "./images/746.jpg");
-const n758 = new zapatos(758, "Deportivo", 95000, "./images/758.jpg");
-const n759 = new zapatos(759, "Deportivo", 95000, "./images/759.jpg");
-const n768 = new zapatos(768, "Deportivo", 95000, "./images/768.jpg");
-const n604 = new zapatos(604, "Casual", 95000, "./images/604.jpg");
-const n749 = new zapatos(749, "Casual", 95000, "./images/749.jpg");
-const n750 = new zapatos(750, "Casual", 95000, "./images/750.jpg");
-const n770 = new zapatos(770, "Casual", 95000, "./images/770.jpeg");
-const n773 = new zapatos(773, "Casual", 95000, "./images/773.jpg");
-const n856 = new zapatos(856, "Casual", 95000, "./images/856.jpg");
-const n823 = new zapatos(823, "Casual", 95000, "./images/823.jpeg");
-const n599 = new zapatos(599, "Casual", 95000, "./images/599.jpg");
-const n827 = new zapatos(827, "Tacón", 95000, "./images/827.jpeg");
-const n302 = new zapatos(302, "Tacón", 95000, "./images/302.jpeg");
-const n585 = new zapatos(585, "Tacón", 95000, "./images/585.jpg");
-const n829 = new zapatos(829, "Tacón", 95000, "./images/829.jpeg");
-const n858 = new zapatos(858, "Tacón", 95000, "./images/858.jpg");
-const n828 = new zapatos(828, "Tacón", 95000, "./images/828.jpeg");
-const n676 = new zapatos(676, "Tacón", 95000, "./images/676.jpeg");
-const n337 = new zapatos(337, "Tacón", 95000, "./images/337.jpg");
-const n534 = new zapatos(534, "Botín", 95000, "./images/534.jpg");
-const n809 = new zapatos(809, "Botín", 95000, "./images/809.jpeg");
-const n722 = new zapatos(722, "Botín", 95000, "./images/722.jpg");
-const n723 = new zapatos(723, "Botín", 95000, "./images/723.jpg");
-const n887 = new zapatos(887, "Baleta", 95000, "./images/887.jpeg");
-const n971 = new zapatos(971, "Baleta", 95000, "./images/971.jpeg");
-const n793 = new zapatos(793, "Baleta", 95000, "./images/793.jpeg");
-const n888 = new zapatos(888, "Baleta", 95000, "./images/888.jpeg");
-const n903 = new zapatos(903, "Baleta", 95000, "./images/903.jpg");
-const n976 = new zapatos(976, "Baleta", 95000, "./images/976.jpg");
-const n766 = new zapatos(766, "Sandalia", 95000, "./images/766.jpg");
-const n767 = new zapatos(767, "Sandalia", 95000, "./images/767.jpg");
-
 productList.push(
-  n702,
-  n636,
-  n709,
-  n637,
-  n701,
-  n710,
-  n855,
-  n638,
-  n277,
-  n797,
-  n817,
-  n819,
-  n712,
-  n852,
-  n801,
-  n741,
-  n736,
-  n746,
-  n758,
-  n759,
-  n768,
-  n604,
-  n749,
-  n750,
-  n770,
-  n773,
-  n856,
-  n823,
-  n599,
-  n827,
-  n302,
-  n585,
-  n829,
-  n858,
-  n828,
-  n676,
-  n337,
-  n534,
-  n809,
-  n887,
-  n971,
-  n793,
-  n766,
-  n767,
-  n722,
-  n723,
-  n888,
-  n903,
-  n976
+  new zapatos(702, "Deportivo", 95000, "./images/702.jpg"),
+  new zapatos(636, "Deportivo", 95000, "./images/636.jpg"),
+  new zapatos(709, "Deportivo", 100000, "./images/709.jpg"),
+  new zapatos(637, "Deportivo", 95000, "./images/637.jpg"),
+  new zapatos(701, "Deportivo", 95000, "./images/701.jpg"),
+  new zapatos(710, "Deportivo", 95000, "./images/710.jpg"),
+  new zapatos(855, "Deportivo", 95000, "./images/855.jpg"),
+  new zapatos(638, "Deportivo", 95000, "./images/638.jpg"),
+  new zapatos(277, "Deportivo", 95000, "./images/277.jpeg"),
+  new zapatos(797, "Deportivo", 95000, "./images/797.jpeg"),
+  new zapatos(817, "Deportivo", 95000, "./images/817.jpeg"),
+  new zapatos(819, "Deportivo", 95000, "./images/819.jpeg"),
+  new zapatos(712, "Deportivo", 95000, "./images/712.jpg"),
+  new zapatos(852, "Deportivo", 95000, "./images/852.jpg"),
+  new zapatos(801, "Deportivo", 95000, "./images/801.jpg"),
+  new zapatos(741, "Deportivo", 95000, "./images/741.jpg"),
+  new zapatos(736, "Deportivo", 95000, "./images/736.jpg"),
+  new zapatos(746, "Deportivo", 95000, "./images/746.jpg"),
+  new zapatos(758, "Deportivo", 95000, "./images/758.jpg"),
+  new zapatos(759, "Deportivo", 95000, "./images/759.jpg"),
+  new zapatos(768, "Deportivo", 95000, "./images/768.jpg"),
+  new zapatos(604, "Casual", 95000, "./images/604.jpg"),
+  new zapatos(749, "Casual", 95000, "./images/749.jpg"),
+  new zapatos(750, "Casual", 95000, "./images/750.jpg"),
+  new zapatos(770, "Casual", 95000, "./images/770.jpeg"),
+  new zapatos(773, "Casual", 95000, "./images/773.jpg"),
+  new zapatos(856, "Casual", 95000, "./images/856.jpg"),
+  new zapatos(823, "Casual", 95000, "./images/823.jpeg"),
+  new zapatos(599, "Casual", 95000, "./images/599.jpg"),
+  new zapatos(827, "Tacón", 95000, "./images/827.jpeg"),
+  new zapatos(302, "Tacón", 95000, "./images/302.jpeg"),
+  new zapatos(585, "Tacón", 95000, "./images/585.jpg"),
+  new zapatos(829, "Tacón", 95000, "./images/829.jpeg"),
+  new zapatos(858, "Tacón", 95000, "./images/858.jpg"),
+  new zapatos(828, "Tacón", 95000, "./images/828.jpeg"),
+  new zapatos(676, "Tacón", 95000, "./images/676.jpeg"),
+  new zapatos(337, "Tacón", 95000, "./images/337.jpg"),
+  new zapatos(534, "Botín", 95000, "./images/534.jpg"),
+  new zapatos(809, "Botín", 95000, "./images/809.jpeg"),
+  new zapatos(722, "Botín", 95000, "./images/722.jpg"),
+  new zapatos(723, "Botín", 95000, "./images/723.jpg"),
+  new zapatos(887, "Baleta", 95000, "./images/887.jpeg"),
+  new zapatos(971, "Baleta", 95000, "./images/971.jpeg"),
+  new zapatos(793, "Baleta", 95000, "./images/793.jpeg"),
+  new zapatos(888, "Baleta", 95000, "./images/888.jpeg"),
+  new zapatos(903, "Baleta", 95000, "./images/903.jpg"),
+  new zapatos(976, "Baleta", 95000, "./images/976.jpg"),
+  new zapatos(766, "Sandalia", 95000, "./images/766.jpg"),
+  new zapatos(767, "Sandalia", 95000, "./images/767.jpg")
 );
 
 const deportivos = productList.filter(function (articulo) {
@@ -213,6 +163,7 @@ const sandalias = productList.filter(function (articulo) {
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     abrirCerrar("", myOrder, desktopMenu, viewProduct, "");
+    abrirCerrar("", mobileMenu, "", "", "");
     openBack();
   }
 });
@@ -226,7 +177,7 @@ Para un total de *${formatoMoneda(spanPrice)}*
 
 Gracias por la información.`;
 
-  for (var zapato of pedido) {
+  for (const zapato of pedido) {
     eachMessage = `
 • 1 producto Ref: ${zapato.ref}, Talla ${zapato.size}, Precio: ${formatoMoneda(
       zapato.price
@@ -246,16 +197,16 @@ Gracias por la información.`;
 
 function openBack() {
   document.body.style.backgroundColor = "white";
-  for (var card of productCard) {
+  for (const card of productCard) {
     card.classList.remove("backProductCard");
   }
-  for (var cards of productImageList) {
+  for (const cards of productImageList) {
     cards.style.boxShadow = "0px 0px 0px 0px white";
   }
 }
 
 function formatoMoneda(valor) {
-  let convertirMoneda = `$${valor.toLocaleString()}`;
+  const convertirMoneda = `$${valor.toLocaleString()}`;
   return convertirMoneda;
 }
 
@@ -263,6 +214,7 @@ function closeButton() {
   closeViewProduct.addEventListener("click", () => {
     abrirCerrar(viewProduct, "", "", "", "");
     openBack();
+    myOrder.style.backgroundColor = "white";
   });
 }
 
@@ -272,14 +224,25 @@ function clickOnBack() {
       abrirCerrar("", viewProduct, myOrder, desktopMenu, "");
       abrirCerrar("", mobileMenu, "", "", "");
       openBack();
+      myOrder.style.backgroundColor = "white";
+    }
+  });
+  spaceHtml.addEventListener("click", (event) => {
+    if (event.target.tagName.toLowerCase() !== "img") {
+      abrirCerrar("", viewProduct, myOrder, desktopMenu, "");
+      abrirCerrar("", mobileMenu, "", "", "");
+      openBack();
+      myOrder.style.backgroundColor = "white";
     }
   });
 }
+
 function clickOnOrder() {
   myOrder.addEventListener("click", (event) => {
     if (event.target.tagName.toLowerCase() !== "img") {
       openBack();
       abrirCerrar("", "", "", viewProduct, myOrder);
+      myOrder.style.backgroundColor = "white";
     }
   });
 }
@@ -288,7 +251,9 @@ function renderProducts(coleccion) {
   coleccion.forEach((product) => {
     tarjetaProducto = `
       <div class="product-card">
-        <img src="${product.image}" class="productImage" alt="">
+        <img data-ref="${product.ref}" src="${
+      product.image
+    }" class="productImage" alt="">
         <div class="product-info">
           <div>
             <p>${formatoMoneda(product.price)}</p>
@@ -302,34 +267,6 @@ function renderProducts(coleccion) {
       </div>
       `;
     cardsContainer.innerHTML += tarjetaProducto;
-
-    vistaDetalle = `
-        <div class="product-detail-close">
-          <img src="./icons/close1.png" class="product-preview" alt="close">
-        </div>
-        <img src="${product.image}" alt="bike">
-        <div class="product-info-opened">
-          <p>${formatoMoneda(product.price)}</p>
-          <p>${product.name}</p>
-          <div class="form-group">
-          <p>Talla</p>
-            <select id="dropdown" class="form-size">
-              <option value="34">34</option>
-              <option value="35">35</option>
-              <option value="36">36</option>
-              <option value="37">37</option>
-              <option value="38">38</option>
-              <option value="39">39</option>
-              <option value="40">40</option>
-            </select>
-          </div>
-          <button class="add-to-cart-button">
-            <img class="btn-add" src="./icons/add.png" alt="add to cart">
-           Añadir a mi carrito           
-          </button>
-        </div>
-    `;
-    vistasPreview.push(vistaDetalle);
   });
 
   productImageList = document.getElementsByClassName("productImage");
@@ -367,12 +304,14 @@ function AddToComponent(styles) {
   renderProducts(styles);
 }
 
-function addProductCar(ordenDePedido, coleccion) {
+function addProductCar(ordenDePedido) {
   ordenDePedido.forEach((product) => {
     productAdded = `
         <div class="shopping-cart">
           <figure>
-            <img src="${product.image}" alt="${product.name}">
+            <img class="cart-image" data-ref="${product.ref}" src="${
+      product.image
+    }" alt="${product.name}">
           </figure>
           <p>${product.name}</p>
           <p>Talla: ${product.size}</p>
@@ -383,10 +322,12 @@ function addProductCar(ordenDePedido, coleccion) {
     precioProduct = product.price;
   });
 
+  imagesCart = document.getElementsByClassName("cart-image");
   contenMyOrder.innerHTML += productAdded;
 
   listItems = contenMyOrder.getElementsByTagName("div");
-  openViewFromCart(listItems, coleccion);
+
+  openViewFromCart(imagesCart);
   removeOrder(listItems);
 
   spanPrice += precioProduct;
@@ -399,43 +340,79 @@ function addProductCar(ordenDePedido, coleccion) {
 function vistaPrevia(listaImagenes, coleccion) {
   for (let i = 0; i < listaImagenes.length; i++) {
     listaImagenes[i].addEventListener("click", () => {
-      viewProduct.innerHTML = vistasPreview[i];
-      size = document.querySelector("#dropdown");
-      abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
-      AddToCart(coleccion, i);
-      clickOnOrder();
+      openModal(i, listaImagenes, coleccion, true);
     });
   }
 }
 
-//debo unificar estas dos funciones openViewFromCart y vistaPrevia
-function openViewFromCart(imagesCart, coleccion) {
+function openViewFromCart(imagesCart) {
   for (let i = 0; i < imagesCart.length; i++) {
-    let openImage = imagesCart[i].getElementsByTagName("img")[0];
-    let refToOpen = myCarOrder[i].ref;
-
-    openImage.addEventListener("click", function () {
-      getIndex(refToOpen, coleccion);
-      viewProduct.innerHTML = vistasPreview[indice];
-      size = document.querySelector("#dropdown");
-      abrirCerrar(viewProduct, desktopMenu, "", mobileMenu, "");
-      buttonAddToCar = document.querySelector(".add-to-cart-button");
-      dropSize = document.querySelector(".form-group");
-      buttonAddToCar.classList.add("inactive");
-      dropSize.classList.add("inactive");
+    imagesCart[i].addEventListener("click", () => {
+      openModal(i, imagesCart, "", false);
+      abrirCerrar("", desktopMenu, "", mobileMenu, viewProduct);
       closeViewProduct = document.querySelector(".product-detail-close");
       closeButton();
       document.body.style.backgroundColor = "#DAD8D8";
-      for (var card of productCard) {
+      for (const card of productCard) {
         card.classList.add("backProductCard");
       }
+      myOrder.style.backgroundColor = "#B8B5B5";
     });
   }
+}
+
+function openModal(i, imagenes, coleccion, optionToAdd) {
+  const zapatoToPrint = productList.find(
+    (p) => p.ref === +imagenes[i].dataset.ref
+  );
+  console.log(zapatoToPrint);
+
+  vistaDetalle = `
+  <div class="product-detail-close">
+    <img src="./icons/close1.png" class="product-preview" alt="close">
+  </div>
+  <img src="${zapatoToPrint.image}" alt="bike">
+  <div class="product-info-opened">
+    <p>${formatoMoneda(zapatoToPrint.price)}</p>
+    <p>${zapatoToPrint.name}</p>
+    </div>
+`;
+
+  viewProduct.innerHTML = vistaDetalle;
+
+  if (optionToAdd) {
+    plusVistaDetalle = `
+  <div class="product-info-opened">
+  <div class="form-group">
+  <p>Talla</p>
+    <select id="dropdown" class="form-size">
+      <option value="34">34</option>
+      <option value="35">35</option>
+      <option value="36">36</option>
+      <option value="37">37</option>
+      <option value="38">38</option>
+      <option value="39">39</option>
+      <option value="40">40</option>
+    </select>
+  </div>
+  <button class="add-to-cart-button">
+    <img class="btn-add" src="./icons/add.png" alt="add to cart">
+   Añadir a mi carrito           
+  </button>
+  </div>`;
+
+    viewProduct.innerHTML += plusVistaDetalle;
+    AddToCart(coleccion, i);
+    abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
+  }
+
+  clickOnOrder();
 }
 
 function AddToCart(coleccion, i) {
   closeViewProduct = document.querySelector(".product-detail-close");
   buttonAddToCar = document.querySelector(".add-to-cart-button");
+  size = document.querySelector("#dropdown");
 
   buttonAddToCar.addEventListener("click", () => {
     buttonAddToCar.innerHTML = `
@@ -446,18 +423,14 @@ function AddToCart(coleccion, i) {
     buttonAddToCar.style.backgroundColor = "black";
     buttonAddToCar.disabled = true;
     myCarOrder.push({
-      ref: coleccion[i].ref,
-      name: coleccion[i].name,
-      price: coleccion[i].price,
-      image: coleccion[i].image,
+      ...coleccion[i],
       size: size.value,
     });
-    //addBtnAdded(referencia, coleccion);
     buttonConfirm.classList.remove("inactive");
     totalOrder.classList.remove("inactive");
     emptyCar.classList.add("inactive");
     console.log(myCarOrder);
-    addProductCar(myCarOrder, coleccion);
+    addProductCar(myCarOrder);
     setTimeout(function () {
       abrirCerrar("", viewProduct, "", "", "");
       openBack();
@@ -467,16 +440,16 @@ function AddToCart(coleccion, i) {
   closeButton();
 
   document.body.style.backgroundColor = "#DAD8D8";
-  for (var card of productCard) {
+  for (const card of productCard) {
     card.classList.add("backProductCard");
   }
 }
 
 function removeOrder(order) {
   for (let i = 0; i < order.length; i++) {
-    let closeBoton = order[i].getElementsByTagName("img")[1];
-    let positionArray = myCarOrder[i]; // Seleccionar el elemento del array para después utilizarlo como Index y así eliminarlo por splice
-    let priceEliminateOrder = myCarOrder[i].price;
+    closeBoton = order[i].getElementsByTagName("img")[1];
+    positionArray = myCarOrder[i]; // Seleccionar el elemento del array para después utilizarlo como Index y así eliminarlo por splice
+    priceEliminateOrder = myCarOrder[i].price;
 
     closeBoton.addEventListener("click", function () {
       this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
@@ -499,18 +472,4 @@ function removeOrder(order) {
       }
     });
   }
-}
-
-// function addBtnAdded(refAdded, coleccion) {
-//   let indiceAddedProduct = coleccion.findIndex(function (zapato) {
-//     return zapato.ref === +refAdded;
-//   });
-//   iconAdded[indiceAddedProduct].classList.remove("inactive");
-// }
-
-function getIndex(refOpen, coleccion) {
-  let indiceOpenProduct = coleccion.findIndex(function (zapato) {
-    return zapato.ref === +refOpen;
-  });
-  indice = indiceOpenProduct;
 }
