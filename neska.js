@@ -319,7 +319,7 @@ function addProductCar(ordenDePedido) {
           <p>${product.name}</p>
           <p>Talla: ${product.size}</p>
           <p>${formatoMoneda(product.price)}</p>
-          <img class="delete" src="./icons/icon_close.png" alt="close">
+          <img class="delete" src="./icons/delete-button.svg" alt="close">
         </div>
       `;
     precioProduct = product.price;

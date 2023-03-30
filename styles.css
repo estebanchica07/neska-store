@@ -259,12 +259,12 @@ aside#shoppingCartContainer {
 .order p:nth-child(2) {
   text-align: end;
   font-weight: bold;
-  padding-right: 27px;
+  padding-right: 38px;
 }
 .shopping-cart {
   display: grid;
-  grid-template-columns: auto 1fr auto auto auto;
-  gap: 19px;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 18px;
   margin-bottom: 24px;
   align-items: center;
   margin-top: 10px;
@@ -281,6 +281,8 @@ aside#shoppingCartContainer {
 }
 
 .delete {
+  width: 27px;
+  margin-right: -5px;
   cursor: pointer;
 }
 .shopping-cart p:nth-child() {
@@ -558,7 +560,7 @@ aside #productDetail {
   }
 
   .order p:nth-child(2) {
-    padding-right: 18px;
+    padding-right: 31px;
   }
   #productDetail > img:nth-child(2) {
     height: 360px;
