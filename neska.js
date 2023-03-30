@@ -40,6 +40,9 @@ let message = "";
 let orderToSend;
 let totalOrderToSend;
 let openImage;
+let productAdded;
+let precioProduct;
+let eachMessage;
 
 cuentaEmail.addEventListener("click", () =>
   abrirCerrar(desktopMenu, myOrder, viewProduct, mobileMenu, "")
@@ -228,7 +231,7 @@ function clickOnBack() {
     }
   });
   spaceHtml.addEventListener("click", (event) => {
-    if (event.target.tagName.toLowerCase() !== "img") {
+    if (event.target.tagName.toLowerCase() === "") {
       abrirCerrar("", viewProduct, myOrder, desktopMenu, "");
       abrirCerrar("", mobileMenu, "", "", "");
       openBack();
@@ -321,11 +324,10 @@ function addProductCar(ordenDePedido) {
       `;
     precioProduct = product.price;
   });
-
-  imagesCart = document.getElementsByClassName("cart-image");
+  console.log(myCarOrder);
   contenMyOrder.innerHTML += productAdded;
-
   listItems = contenMyOrder.getElementsByTagName("div");
+  imagesCart = document.getElementsByClassName("cart-image");
 
   openViewFromCart(imagesCart);
   removeOrder(listItems);
@@ -356,7 +358,7 @@ function openViewFromCart(imagesCart) {
       for (const card of productCard) {
         card.classList.add("backProductCard");
       }
-      myOrder.style.backgroundColor = "#B8B5B5";
+      myOrder.style.backgroundColor = "#EFEFEF";
     });
   }
 }
@@ -400,7 +402,7 @@ function openModal(i, imagenes, coleccion, optionToAdd) {
    Añadir a mi carrito           
   </button>
   </div>`;
-
+    buttonAddToCar = document.querySelector(".add-to-cart-button");
     viewProduct.innerHTML += plusVistaDetalle;
     AddToCart(coleccion, i);
     abrirCerrar("", desktopMenu, myOrder, mobileMenu, viewProduct);
@@ -429,8 +431,8 @@ function AddToCart(coleccion, i) {
     buttonConfirm.classList.remove("inactive");
     totalOrder.classList.remove("inactive");
     emptyCar.classList.add("inactive");
-    console.log(myCarOrder);
     addProductCar(myCarOrder);
+    console.log(myCarOrder);
     setTimeout(function () {
       abrirCerrar("", viewProduct, "", "", "");
       openBack();
@@ -447,7 +449,7 @@ function AddToCart(coleccion, i) {
 
 function removeOrder(order) {
   for (let i = 0; i < order.length; i++) {
-    closeBoton = order[i].getElementsByTagName("img")[1];
+    const closeBoton = order[i].getElementsByTagName("img")[1];
     positionArray = myCarOrder[i]; // Seleccionar el elemento del array para después utilizarlo como Index y así eliminarlo por splice
     priceEliminateOrder = myCarOrder[i].price;
 
