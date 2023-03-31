@@ -25,6 +25,7 @@ const deportivosLine = document.querySelector("#deportivos");
 const myCarOrder = [];
 const spaceHtml = document.querySelector(".html");
 
+let closeBoton;
 let deleteProduct;
 let buttonAddToCar;
 let vistasPreview = [];
@@ -43,6 +44,7 @@ let openImage;
 let productAdded;
 let precioProduct;
 let eachMessage;
+let positionArray = 0;
 
 cuentaEmail.addEventListener("click", () =>
   abrirCerrar(desktopMenu, myOrder, viewProduct, mobileMenu, "")
@@ -171,7 +173,8 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-function sendOrder(pedido) {
+function makeTextToSend(pedido) {
+  message = "";
   orderToSend = `Hola *Calzado Neska*, me interesan los siguientes productos que vi en la página Web: 
   `;
   totalOrderToSend = `
@@ -185,18 +188,15 @@ Gracias por la información.`;
 • 1 producto Ref: ${zapato.ref}, Talla ${zapato.size}, Precio: ${formatoMoneda(
       zapato.price
     )}`;
+    message += eachMessage;
   }
-
-  message += eachMessage;
-
-  buttonConfirm.addEventListener("click", function () {
-    encodedMessage = encodeURIComponent(
-      orderToSend + message + totalOrderToSend
-    );
-    url = `https://wa.me/${573107675471}?text=${encodedMessage}`;
-    window.open(url, "_blank");
-  });
 }
+
+buttonConfirm.addEventListener("click", function () {
+  encodedMessage = encodeURIComponent(orderToSend + message + totalOrderToSend);
+  url = `https://wa.me/${573107675471}?text=${encodedMessage}`;
+  window.open(url, "_blank");
+});
 
 function openBack() {
   document.body.style.backgroundColor = "white";
@@ -327,14 +327,13 @@ function addProductCar(ordenDePedido) {
   console.log(myCarOrder);
   contenMyOrder.innerHTML += productAdded;
   listItems = contenMyOrder.getElementsByTagName("div");
+  imagesDelete = document.getElementsByClassName("delete");
   imagesCart = document.getElementsByClassName("cart-image");
 
   openViewFromCart(imagesCart);
-  removeOrder(listItems);
-
+  removeOrder(imagesDelete, ordenDePedido);
   spanPrice += precioProduct;
   totalPrice.innerHTML = formatoMoneda(spanPrice);
-  sendOrder(myCarOrder);
   spanOrder++;
   quantityOrder.innerHTML = spanOrder;
 }
@@ -437,8 +436,9 @@ function AddToCart(coleccion, i) {
       abrirCerrar("", viewProduct, "", "", "");
       openBack();
     }, 800);
+    makeTextToSend(myCarOrder);
+    console.log(message);
   });
-
   closeButton();
 
   document.body.style.backgroundColor = "#DAD8D8";
@@ -447,24 +447,21 @@ function AddToCart(coleccion, i) {
   }
 }
 
-function removeOrder(order) {
+function removeOrder(order, ordenDePedido) {
   for (let i = 0; i < order.length; i++) {
-    const closeBoton = order[i].getElementsByTagName("img")[1];
-    positionArray = myCarOrder[i]; // Seleccionar el elemento del array para después utilizarlo como Index y así eliminarlo por splice
-    priceEliminateOrder = myCarOrder[i].price;
+    priceEliminateOrder = ordenDePedido[i].price;
 
-    closeBoton.addEventListener("click", function () {
-      this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
-
-      myCarOrder.splice(positionArray, 1);
-
+    order[i].addEventListener("click", function () {
+      ordenDePedido.splice(i, 1);
       spanPrice -= priceEliminateOrder;
       totalPrice.innerHTML = formatoMoneda(spanPrice);
-
       spanOrder -= 1;
       quantityOrder.innerHTML = spanOrder;
 
       console.log(myCarOrder);
+      makeTextToSend(ordenDePedido);
+      console.log(message);
+      this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
 
       if (spanPrice === 0) {
         totalOrder.classList.add("inactive");
