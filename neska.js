@@ -44,7 +44,6 @@ let openImage;
 let productAdded;
 let precioProduct;
 let eachMessage;
-let positionArray = 0;
 
 cuentaEmail.addEventListener("click", () =>
   abrirCerrar(desktopMenu, myOrder, viewProduct, mobileMenu, "")
@@ -85,65 +84,228 @@ const abrirCerrar = function (e, m, g, k, l) {
 
 const productList = [];
 class zapatos {
-  constructor(refe, nombre, precio, imagen, talla) {
+  constructor(refe, nombre, precio, imagen, color, material, talla) {
     this.ref = refe;
     this.name = nombre;
     this.price = precio;
     this.image = imagen;
+    this.color = color;
+    this.material = material;
     this.size = talla;
   }
 }
 
 productList.push(
-  new zapatos(702, "Deportivo", 95000, "./images/702.jpg"),
-  new zapatos(636, "Deportivo", 95000, "./images/636.jpg"),
-  new zapatos(709, "Deportivo", 100000, "./images/709.jpg"),
-  new zapatos(637, "Deportivo", 95000, "./images/637.jpg"),
-  new zapatos(701, "Deportivo", 95000, "./images/701.jpg"),
-  new zapatos(710, "Deportivo", 95000, "./images/710.jpg"),
-  new zapatos(855, "Deportivo", 95000, "./images/855.jpg"),
-  new zapatos(638, "Deportivo", 95000, "./images/638.jpg"),
-  new zapatos(277, "Deportivo", 95000, "./images/277.jpeg"),
-  new zapatos(797, "Deportivo", 95000, "./images/797.jpeg"),
-  new zapatos(817, "Deportivo", 95000, "./images/817.jpeg"),
-  new zapatos(819, "Deportivo", 95000, "./images/819.jpeg"),
-  new zapatos(712, "Deportivo", 95000, "./images/712.jpg"),
-  new zapatos(852, "Deportivo", 95000, "./images/852.jpg"),
-  new zapatos(801, "Deportivo", 95000, "./images/801.jpg"),
-  new zapatos(741, "Deportivo", 95000, "./images/741.jpg"),
-  new zapatos(736, "Deportivo", 95000, "./images/736.jpg"),
-  new zapatos(746, "Deportivo", 95000, "./images/746.jpg"),
-  new zapatos(758, "Deportivo", 95000, "./images/758.jpg"),
-  new zapatos(759, "Deportivo", 95000, "./images/759.jpg"),
-  new zapatos(768, "Deportivo", 95000, "./images/768.jpg"),
-  new zapatos(604, "Casual", 95000, "./images/604.jpg"),
-  new zapatos(749, "Casual", 95000, "./images/749.jpg"),
-  new zapatos(750, "Casual", 95000, "./images/750.jpg"),
-  new zapatos(770, "Casual", 95000, "./images/770.jpeg"),
-  new zapatos(773, "Casual", 95000, "./images/773.jpg"),
-  new zapatos(856, "Casual", 95000, "./images/856.jpg"),
-  new zapatos(823, "Casual", 95000, "./images/823.jpeg"),
-  new zapatos(599, "Casual", 95000, "./images/599.jpg"),
-  new zapatos(827, "Tacón", 95000, "./images/827.jpeg"),
-  new zapatos(302, "Tacón", 95000, "./images/302.jpeg"),
-  new zapatos(585, "Tacón", 95000, "./images/585.jpg"),
-  new zapatos(829, "Tacón", 95000, "./images/829.jpeg"),
-  new zapatos(858, "Tacón", 95000, "./images/858.jpg"),
-  new zapatos(828, "Tacón", 95000, "./images/828.jpeg"),
-  new zapatos(676, "Tacón", 95000, "./images/676.jpeg"),
-  new zapatos(337, "Tacón", 95000, "./images/337.jpg"),
-  new zapatos(534, "Botín", 95000, "./images/534.jpg"),
-  new zapatos(809, "Botín", 95000, "./images/809.jpeg"),
-  new zapatos(722, "Botín", 95000, "./images/722.jpg"),
-  new zapatos(723, "Botín", 95000, "./images/723.jpg"),
-  new zapatos(887, "Baleta", 95000, "./images/887.jpeg"),
-  new zapatos(971, "Baleta", 95000, "./images/971.jpeg"),
-  new zapatos(793, "Baleta", 95000, "./images/793.jpeg"),
-  new zapatos(888, "Baleta", 95000, "./images/888.jpeg"),
-  new zapatos(903, "Baleta", 95000, "./images/903.jpg"),
-  new zapatos(976, "Baleta", 95000, "./images/976.jpg"),
-  new zapatos(766, "Sandalia", 95000, "./images/766.jpg"),
-  new zapatos(767, "Sandalia", 95000, "./images/767.jpg")
+  new zapatos(702, "Deportivo", 95000, "./images/702.jpg", "Nude", "Sintético"),
+  new zapatos(
+    636,
+    "Deportivo",
+    95000,
+    "./images/636.jpg",
+    "Blanco",
+    "Sintético"
+  ),
+  new zapatos(
+    709,
+    "Deportivo",
+    100000,
+    "./images/709.jpg",
+    "Champaña",
+    "Sintético"
+  ),
+  new zapatos(
+    637,
+    "Deportivo",
+    95000,
+    "./images/637.jpg",
+    "Blanco",
+    "Sintético"
+  ),
+  new zapatos(
+    701,
+    "Deportivo",
+    95000,
+    "./images/701.jpg",
+    "Champaña",
+    "Sintético"
+  ),
+  new zapatos(
+    710,
+    "Deportivo",
+    95000,
+    "./images/710.jpg",
+    "Perla",
+    "Sintético"
+  ),
+  new zapatos(855, "Deportivo", 160000, "./images/855.jpg", "Dorado", "Cuero"),
+  new zapatos(
+    638,
+    "Deportivo",
+    110000,
+    "./images/638.jpg",
+    "Blanco",
+    "Sintético"
+  ),
+  new zapatos(
+    277,
+    "Deportivo",
+    95000,
+    "./images/277.jpeg",
+    "Negro",
+    "Sintético"
+  ),
+  new zapatos(
+    797,
+    "Deportivo",
+    95000,
+    "./images/797.jpeg",
+    "Blanco",
+    "Sintético"
+  ),
+  new zapatos(
+    817,
+    "Deportivo",
+    95000,
+    "./images/817.jpeg",
+    "Blanco",
+    "Sintético"
+  ),
+  new zapatos(
+    819,
+    "Deportivo",
+    95000,
+    "./images/819.jpeg",
+    "Gris",
+    "Sintético"
+  ),
+  new zapatos(712, "Deportivo", 95000, "./images/712.jpg", "Rojo", "Sintético"),
+  new zapatos(
+    852,
+    "Deportivo",
+    95000,
+    "./images/852.jpg",
+    "Blanco",
+    "Sintético"
+  ),
+  new zapatos(
+    801,
+    "Deportivo",
+    95000,
+    "./images/801.jpg",
+    "Blanco",
+    "Sintético"
+  ),
+  new zapatos(
+    741,
+    "Deportivo",
+    95000,
+    "./images/741.jpg",
+    "Blanco",
+    "Sintético"
+  ),
+  new zapatos(
+    736,
+    "Deportivo",
+    95000,
+    "./images/736.jpg",
+    "Negro",
+    "Sintético"
+  ),
+  new zapatos(
+    746,
+    "Deportivo",
+    95000,
+    "./images/746.jpg",
+    "Dorado",
+    "Sintético"
+  ),
+  new zapatos(
+    758,
+    "Deportivo",
+    95000,
+    "./images/758.jpg",
+    "Beige",
+    "Sintético"
+  ),
+  new zapatos(
+    759,
+    "Deportivo",
+    95000,
+    "./images/759.jpg",
+    "Negro",
+    "Sintético"
+  ),
+  new zapatos(
+    768,
+    "Deportivo",
+    95000,
+    "./images/768.jpg",
+    "Blanco",
+    "Sintético"
+  ),
+  new zapatos(604, "Casual", 95000, "./images/604.jpg", "Miel", "Sintético"),
+  new zapatos(749, "Casual", 95000, "./images/749.jpg", "Negro", "Sintético"),
+  new zapatos(750, "Casual", 95000, "./images/750.jpg", "Beige", "Sintético"),
+  new zapatos(770, "Casual", 95000, "./images/770.jpeg", "Champaña", "Cuero"),
+  new zapatos(773, "Casual", 95000, "./images/773.jpg", "Beige", "Sintético"),
+  new zapatos(856, "Casual", 95000, "./images/856.jpg", "Negro", "Sintético"),
+  new zapatos(823, "Casual", 95000, "./images/823.jpeg", "Negro", "Sintético"),
+  new zapatos(599, "Casual", 95000, "./images/599.jpg", "Azul", "Cuero"),
+  new zapatos(827, "Tacón", 95000, "./images/827.jpeg", "Miel", "Sintético"),
+  new zapatos(302, "Tacón", 95000, "./images/302.jpeg", "Negro", "Sintético"),
+  new zapatos(585, "Tacón", 95000, "./images/585.jpg", "Negro", "Sintético"),
+  new zapatos(
+    829,
+    "Tacón",
+    95000,
+    "./images/829.jpeg",
+    "Champaña",
+    "Sintético"
+  ),
+  new zapatos(858, "Tacón", 95000, "./images/858.jpg", "Beige", "Cuero"),
+  new zapatos(
+    828,
+    "Tacón",
+    95000,
+    "./images/828.jpeg",
+    "Champaña",
+    "Sintético"
+  ),
+  new zapatos(676, "Tacón", 95000, "./images/676.jpeg", "Beige", "Sintético"),
+  new zapatos(337, "Tacón", 95000, "./images/337.jpg", "Champaña", "Sintético"),
+  new zapatos(534, "Botín", 95000, "./images/534.jpg", "Mani", "Sintético"),
+  new zapatos(809, "Botín", 95000, "./images/809.jpeg", "Miel", "Sintético"),
+  new zapatos(722, "Botín", 95000, "./images/722.jpg", "Negro", "Sintético"),
+  new zapatos(723, "Botín", 95000, "./images/723.jpg", "Miel", "Sintético"),
+  new zapatos(
+    887,
+    "Baleta",
+    95000,
+    "./images/887.jpeg",
+    "Naranja",
+    "Sintético"
+  ),
+  new zapatos(971, "Baleta", 95000, "./images/971.jpeg", "Nude", "Sintético"),
+  new zapatos(
+    793,
+    "Baleta",
+    95000,
+    "./images/793.jpeg",
+    "Champaña",
+    "Sintético"
+  ),
+  new zapatos(888, "Baleta", 95000, "./images/888.jpeg", "Fucsia", "Sintético"),
+  new zapatos(903, "Baleta", 95000, "./images/903.jpg", "Rojo", "Sintético"),
+  new zapatos(
+    976,
+    "Baleta",
+    95000,
+    "./images/976.jpg",
+    "Champaña",
+    "Sintético"
+  ),
+  new zapatos(766, "Sandalia", 95000, "./images/766.jpg", "Beige", "Sintético"),
+  new zapatos(767, "Sandalia", 95000, "./images/767.jpg", "Nude", "Sintético")
 );
 
 const deportivos = productList.filter(function (articulo) {
@@ -258,14 +420,10 @@ function renderProducts(coleccion) {
       product.image
     }" class="productImage" alt="">
         <div class="product-info">
-          <div>
+          <div class="product-features">
             <p>${formatoMoneda(product.price)}</p>
-            <p>${product.name}</p>
+            <p>${product.name} ${product.ref}</p>
           </div>
-          <figure>
-          <img class="icon-added inactive" src="./icons/checked.png" alt="">
-          <!--<img class="add-to-cart-grid" src="./icons/bt_add_to_cart.svg" alt="">-->
-          </figure>
         </div>
       </div>
       `;
@@ -373,10 +531,20 @@ function openModal(i, imagenes, coleccion, optionToAdd) {
     <img src="./icons/close1.png" class="product-preview" alt="close">
   </div>
   <img src="${zapatoToPrint.image}" alt="bike">
-  <div class="product-info-opened">
+  <div class="product-info-opened products-features">
+  <div class="info-feature">
+    <p>Referencia:</p>
+    <p>${zapatoToPrint.ref}</p>
+  </div>
+  <div class="info-feature">
+    <p>Precio:</p>
     <p>${formatoMoneda(zapatoToPrint.price)}</p>
-    <p>${zapatoToPrint.name}</p>
+  </div>
+    <div class="info-feature">
+      <p>Material:</p>
+      <p> ${zapatoToPrint.material} ${zapatoToPrint.color}</p>
     </div>
+  </div>
 `;
 
   viewProduct.innerHTML = vistaDetalle;
@@ -386,6 +554,7 @@ function openModal(i, imagenes, coleccion, optionToAdd) {
   <div class="product-info-opened">
   <div class="form-group">
   <p>Talla</p>
+    <p class="pide-talla">(Pide la talla que más uses en el mercado nacional)</p>
     <select id="dropdown" class="form-size">
       <option value="34">34</option>
       <option value="35">35</option>
@@ -447,11 +616,11 @@ function AddToCart(coleccion, i) {
   }
 }
 
-function removeOrder(order, ordenDePedido) {
-  for (let i = 0; i < order.length; i++) {
+function removeOrder(orderDiv, ordenDePedido) {
+  for (let i = 0; i < orderDiv.length; i++) {
     priceEliminateOrder = ordenDePedido[i].price;
 
-    order[i].addEventListener("click", function () {
+    orderDiv[i].addEventListener("click", function () {
       ordenDePedido.splice(i, 1);
       spanPrice -= priceEliminateOrder;
       totalPrice.innerHTML = formatoMoneda(spanPrice);
