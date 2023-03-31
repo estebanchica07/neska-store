@@ -22,9 +22,9 @@ const botinesStyles = document.querySelectorAll(".botines");
 const baletasStyles = document.querySelectorAll(".baletas");
 const sandaliasStyles = document.querySelectorAll(".sandalias");
 const deportivosLine = document.querySelector("#deportivos");
-const myCarOrder = [];
 const spaceHtml = document.querySelector(".html");
 
+let myCarOrder = [];
 let closeBoton;
 let deleteProduct;
 let buttonAddToCar;
@@ -243,69 +243,76 @@ productList.push(
     "Blanco",
     "Sintético"
   ),
-  new zapatos(604, "Casual", 95000, "./images/604.jpg", "Miel", "Sintético"),
-  new zapatos(749, "Casual", 95000, "./images/749.jpg", "Negro", "Sintético"),
-  new zapatos(750, "Casual", 95000, "./images/750.jpg", "Beige", "Sintético"),
-  new zapatos(770, "Casual", 95000, "./images/770.jpeg", "Champaña", "Cuero"),
-  new zapatos(773, "Casual", 95000, "./images/773.jpg", "Beige", "Sintético"),
-  new zapatos(856, "Casual", 95000, "./images/856.jpg", "Negro", "Sintético"),
-  new zapatos(823, "Casual", 95000, "./images/823.jpeg", "Negro", "Sintético"),
-  new zapatos(599, "Casual", 95000, "./images/599.jpg", "Azul", "Cuero"),
-  new zapatos(827, "Tacón", 95000, "./images/827.jpeg", "Miel", "Sintético"),
-  new zapatos(302, "Tacón", 95000, "./images/302.jpeg", "Negro", "Sintético"),
-  new zapatos(585, "Tacón", 95000, "./images/585.jpg", "Negro", "Sintético"),
+  new zapatos(604, "Casual", 100000, "./images/604.jpg", "Miel", "Sintético"),
+  new zapatos(749, "Casual", 100000, "./images/749.jpg", "Negro", "Sintético"),
+  new zapatos(750, "Casual", 100000, "./images/750.jpg", "Beige", "Sintético"),
+  new zapatos(770, "Casual", 100000, "./images/770.jpeg", "Champaña", "Cuero"),
+  new zapatos(773, "Casual", 100000, "./images/773.jpg", "Beige", "Sintético"),
+  new zapatos(856, "Casual", 100000, "./images/856.jpg", "Negro", "Sintético"),
+  new zapatos(823, "Casual", 100000, "./images/823.jpeg", "Negro", "Sintético"),
+  new zapatos(599, "Casual", 100000, "./images/599.jpg", "Azul", "Cuero"),
+  new zapatos(827, "Tacón", 105000, "./images/827.jpeg", "Miel", "Sintético"),
+  new zapatos(302, "Tacón", 105000, "./images/302.jpeg", "Negro", "Sintético"),
+  new zapatos(585, "Tacón", 105000, "./images/585.jpg", "Negro", "Sintético"),
   new zapatos(
     829,
     "Tacón",
-    95000,
+    105000,
     "./images/829.jpeg",
     "Champaña",
     "Sintético"
   ),
-  new zapatos(858, "Tacón", 95000, "./images/858.jpg", "Beige", "Cuero"),
+  new zapatos(858, "Tacón", 105000, "./images/858.jpg", "Beige", "Cuero"),
   new zapatos(
     828,
     "Tacón",
-    95000,
+    105000,
     "./images/828.jpeg",
     "Champaña",
     "Sintético"
   ),
-  new zapatos(676, "Tacón", 95000, "./images/676.jpeg", "Beige", "Sintético"),
-  new zapatos(337, "Tacón", 95000, "./images/337.jpg", "Champaña", "Sintético"),
-  new zapatos(534, "Botín", 95000, "./images/534.jpg", "Mani", "Sintético"),
-  new zapatos(809, "Botín", 95000, "./images/809.jpeg", "Miel", "Sintético"),
-  new zapatos(722, "Botín", 95000, "./images/722.jpg", "Negro", "Sintético"),
-  new zapatos(723, "Botín", 95000, "./images/723.jpg", "Miel", "Sintético"),
+  new zapatos(676, "Tacón", 105000, "./images/676.jpeg", "Beige", "Sintético"),
+  new zapatos(
+    337,
+    "Tacón",
+    105000,
+    "./images/337.jpg",
+    "Champaña",
+    "Sintético"
+  ),
+  new zapatos(534, "Botín", 125000, "./images/534.jpg", "Mani", "Sintético"),
+  new zapatos(809, "Botín", 125000, "./images/809.jpeg", "Miel", "Sintético"),
+  new zapatos(722, "Botín", 125000, "./images/722.jpg", "Negro", "Sintético"),
+  new zapatos(723, "Botín", 125000, "./images/723.jpg", "Miel", "Sintético"),
   new zapatos(
     887,
     "Baleta",
-    95000,
+    70000,
     "./images/887.jpeg",
     "Naranja",
     "Sintético"
   ),
-  new zapatos(971, "Baleta", 95000, "./images/971.jpeg", "Nude", "Sintético"),
+  new zapatos(971, "Baleta", 70000, "./images/971.jpeg", "Nude", "Sintético"),
   new zapatos(
     793,
     "Baleta",
-    95000,
+    70000,
     "./images/793.jpeg",
     "Champaña",
     "Sintético"
   ),
-  new zapatos(888, "Baleta", 95000, "./images/888.jpeg", "Fucsia", "Sintético"),
-  new zapatos(903, "Baleta", 95000, "./images/903.jpg", "Rojo", "Sintético"),
+  new zapatos(888, "Baleta", 70000, "./images/888.jpeg", "Fucsia", "Sintético"),
+  new zapatos(903, "Baleta", 70000, "./images/903.jpg", "Rojo", "Sintético"),
   new zapatos(
     976,
     "Baleta",
-    95000,
+    70000,
     "./images/976.jpg",
     "Champaña",
     "Sintético"
   ),
-  new zapatos(766, "Sandalia", 95000, "./images/766.jpg", "Beige", "Sintético"),
-  new zapatos(767, "Sandalia", 95000, "./images/767.jpg", "Nude", "Sintético")
+  new zapatos(766, "Sandalia", 85000, "./images/766.jpg", "Beige", "Sintético"),
+  new zapatos(767, "Sandalia", 85000, "./images/767.jpg", "Nude", "Sintético")
 );
 
 const deportivos = productList.filter(function (articulo) {
@@ -489,7 +496,7 @@ function addProductCar(ordenDePedido) {
   imagesCart = document.getElementsByClassName("cart-image");
 
   openViewFromCart(imagesCart);
-  removeOrder(imagesDelete, ordenDePedido);
+  removeOrder(imagesDelete);
   spanPrice += precioProduct;
   totalPrice.innerHTML = formatoMoneda(spanPrice);
   spanOrder++;
@@ -616,21 +623,28 @@ function AddToCart(coleccion, i) {
   }
 }
 
-function removeOrder(orderDiv, ordenDePedido) {
-  for (let i = 0; i < orderDiv.length; i++) {
-    priceEliminateOrder = ordenDePedido[i].price;
+function removeOrder(imagDelete) {
+  for (let i = 0; i < imagDelete.length; i++) {
+    //priceEliminateOrder = ordenDePedido[i].price;
 
-    orderDiv[i].addEventListener("click", function () {
-      ordenDePedido.splice(i, 1);
-      spanPrice -= priceEliminateOrder;
+    imagDelete[i].addEventListener("click", function () {
+      productToless = productList.find(
+        (p) =>
+          p.ref === +this.parentNode.getElementsByTagName("img")[0].dataset.ref
+      );
+      myCarOrder = myCarOrder.filter(
+        (objeto) => objeto.ref !== productToless.ref
+      );
+      //ordenDePedido.splice(i, 1);
+      this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
+      spanPrice -= productToless.price;
       totalPrice.innerHTML = formatoMoneda(spanPrice);
+      makeTextToSend(myCarOrder);
+
       spanOrder -= 1;
       quantityOrder.innerHTML = spanOrder;
-
       console.log(myCarOrder);
-      makeTextToSend(ordenDePedido);
       console.log(message);
-      this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
 
       if (spanPrice === 0) {
         totalOrder.classList.add("inactive");

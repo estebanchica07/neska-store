@@ -611,8 +611,9 @@ aside #productDetail {
     font-size: 16px;
   }
   .form-size {
-    padding-left: 37px;
-    margin-bottom: 9px;
+    padding-left: 35px;
+    margin-top: 6px;
+    margin-bottom: 16px;
   }
   .product-info-opened {
     margin: 7px 10px 0 10px;
