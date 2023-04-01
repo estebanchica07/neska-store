@@ -448,7 +448,10 @@ aside#productDetail {
 .product-info-opened p:nth-child(2).pide-talla {
   font-size: 15px;
 }
-
+.product-info-opened p:nth-child(2).product-added {
+  font-size: var(--md);
+  margin-bottom: 2px;
+}
 .products-features {
   display: flex;
   justify-content: space-evenly;
@@ -606,6 +609,10 @@ aside #productDetail {
   }
   .product-info-opened p:nth-child(2).pide-talla {
     font-size: 13px;
+  }
+  .product-info-opened p:nth-child(2).product-added {
+    font-size: 16px;
+    margin-bottom: 2px;
   }
   .product-info-opened p:nth-child(2) {
     font-size: 16px;

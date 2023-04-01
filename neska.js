@@ -354,9 +354,9 @@ Gracias por la información.`;
 
   for (const zapato of pedido) {
     eachMessage = `
-• 1 producto Ref: ${zapato.ref}, Talla ${zapato.size}, Precio: ${formatoMoneda(
-      zapato.price
-    )}`;
+• 1 producto Ref: ${zapato.ref}, Material: ${zapato.material} ${
+      zapato.color
+    }, Talla ${zapato.size}, Precio: ${formatoMoneda(zapato.price)}`;
     message += eachMessage;
   }
 }
@@ -518,10 +518,7 @@ function openViewFromCart(imagesCart) {
       abrirCerrar("", desktopMenu, "", mobileMenu, viewProduct);
       closeViewProduct = document.querySelector(".product-detail-close");
       closeButton();
-      document.body.style.backgroundColor = "#DAD8D8";
-      for (const card of productCard) {
-        card.classList.add("backProductCard");
-      }
+      darkBack();
       myOrder.style.backgroundColor = "#EFEFEF";
     });
   }
@@ -531,8 +528,7 @@ function openModal(i, imagenes, coleccion, optionToAdd) {
   const zapatoToPrint = productList.find(
     (p) => p.ref === +imagenes[i].dataset.ref
   );
-  console.log(zapatoToPrint);
-
+  //console.log(zapatoToPrint);
   vistaDetalle = `
   <div class="product-detail-close">
     <img src="./icons/close1.png" class="product-preview" alt="close">
@@ -599,6 +595,7 @@ function AddToCart(coleccion, i) {
     buttonAddToCar.style.paddingRight = "10px";
     buttonAddToCar.style.backgroundColor = "black";
     buttonAddToCar.disabled = true;
+    debbuger;
     myCarOrder.push({
       ...coleccion[i],
       size: size.value,
@@ -616,8 +613,11 @@ function AddToCart(coleccion, i) {
     console.log(message);
   });
   closeButton();
+  darkBack();
+}
 
-  document.body.style.backgroundColor = "#DAD8D8";
+function darkBack() {
+  document.body.style.backgroundColor = "#e8e6e6";
   for (const card of productCard) {
     card.classList.add("backProductCard");
   }
@@ -635,7 +635,6 @@ function removeOrder(imagDelete) {
       myCarOrder = myCarOrder.filter(
         (objeto) => objeto.ref !== productToless.ref
       );
-      //ordenDePedido.splice(i, 1);
       this.parentNode.remove(); // Eliminar el div que contiene la imagen que ha sido clickeada
       spanPrice -= productToless.price;
       totalPrice.innerHTML = formatoMoneda(spanPrice);
