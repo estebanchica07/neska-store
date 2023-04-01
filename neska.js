@@ -595,7 +595,7 @@ function AddToCart(coleccion, i) {
     buttonAddToCar.style.paddingRight = "10px";
     buttonAddToCar.style.backgroundColor = "black";
     buttonAddToCar.disabled = true;
-    debbuger;
+    
     myCarOrder.push({
       ...coleccion[i],
       size: size.value,
