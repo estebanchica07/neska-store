@@ -424,11 +424,11 @@ aside#productDetail {
 
 .product-detail-close {
   background: var(--white);
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   position: absolute;
-  top: 24px;
-  left: 24px;
+  top: 23px;
+  left: 23px;
   z-index: 2;
   padding: 12px;
   border-radius: 50%;
@@ -527,7 +527,7 @@ aside#productDetail {
 }
 
 .product-preview {
-  width: 15px;
+  width: 16px;
 }
 
 .icon-added-view {
