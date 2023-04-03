@@ -742,7 +742,7 @@ function AddToCart(coleccion, i) {
     setTimeout(function () {
       Toastify({
         text: "Producto agregado ",
-        duration: 2000,
+        duration: 1700,
         destination: "https://github.com/apvarun/toastify-js",
         newWindow: true,
         close: true,
@@ -786,27 +786,29 @@ function removeOrder(imagDelete) {
     //priceEliminateOrder = ordenDePedido[i].price;
 
     imagDelete[i].addEventListener("click", function () {
-      Toastify({
-        text: "Producto eliminado    ",
-        duration: 2000,
-        destination: "https://github.com/apvarun/toastify-js",
-        newWindow: true,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "linear-gradient(to right, #8eba95, #a0b8a4)",
-          top: "15px",
-          right: "2px",
-          padding: "15px 10px 15px 15px",
-        },
-        offset: {
-          x: 0, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-          y: 50, // vertical axis - can be a number or a string indicating unity. eg: '2em'
-        },
-        onClick: function () {}, // Callback after click
-      }).showToast();
+      if (imagDelete.length > 1) {
+        Toastify({
+          text: "Producto eliminado",
+          duration: 1700,
+          destination: "https://github.com/apvarun/toastify-js",
+          newWindow: true,
+          close: true,
+          gravity: "top", // `top` or `bottom`
+          position: "right", // `left`, `center` or `right`
+          stopOnFocus: true, // Prevents dismissing of toast on hover
+          style: {
+            background: "linear-gradient(to right, #8eba95, #a0b8a4)",
+            top: "15px",
+            right: "2px",
+            padding: "15px 10px 15px 15px",
+          },
+          offset: {
+            x: 0, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: 50, // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },
+          onClick: function () {}, // Callback after click
+        }).showToast();
+      }
 
       productToless = productList.find(
         (p) =>
@@ -830,6 +832,27 @@ function removeOrder(imagDelete) {
         emptyCar.classList.remove("inactive");
         buttonConfirm.classList.add("inactive");
         abrirCerrar("", myOrder, "", "", "");
+        Toastify({
+          text: "Ahora tu carrito está vacío",
+          duration: 1700,
+          destination: "https://github.com/apvarun/toastify-js",
+          newWindow: true,
+          close: true,
+          gravity: "top", // `top` or `bottom`
+          position: "right", // `left`, `center` or `right`
+          stopOnFocus: true, // Prevents dismissing of toast on hover
+          style: {
+            background: "linear-gradient(to right, #8eba95, #a0b8a4)",
+            top: "15px",
+            right: "2px",
+            padding: "15px 10px 15px 15px",
+          },
+          offset: {
+            x: 0, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: 50, // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },
+          onClick: function () {}, // Callback after click
+        }).showToast();
       }
     });
   }
