@@ -846,6 +846,7 @@ function removeOrder(imagDelete) {
             top: "15px",
             right: "2px",
             padding: "15px 10px 15px 15px",
+            maxWidth: "calc(50% - -26px)",
           },
           offset: {
             x: 0, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
