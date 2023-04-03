@@ -737,12 +737,36 @@ function AddToCart(coleccion, i) {
     buttonConfirm.classList.remove("inactive");
     totalOrder.classList.remove("inactive");
     emptyCar.classList.add("inactive");
-    addProductCar(myCarOrder);
     console.log(myCarOrder);
+
     setTimeout(function () {
+      Toastify({
+        text: "Producto agregado ",
+        duration: 2000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #8eba95, #a0b8a4)",
+          top: "15px",
+          right: "2px",
+          padding: "15px 10px 15px 15px",
+        },
+        //como agregar style a un div adentro?
+        offset: {
+          x: 0, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+          y: 50, // vertical axis - can be a number or a string indicating unity. eg: '2em'
+        },
+        onClick: function () {}, // Callback after click
+      }).showToast();
+
+      addProductCar(myCarOrder);
       abrirCerrar("", viewProduct, "", "", "");
       openBack();
-    }, 800);
+    }, 700);
     makeTextToSend(myCarOrder);
     console.log(message);
   });
@@ -762,6 +786,28 @@ function removeOrder(imagDelete) {
     //priceEliminateOrder = ordenDePedido[i].price;
 
     imagDelete[i].addEventListener("click", function () {
+      Toastify({
+        text: "Producto eliminado    ",
+        duration: 2000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #8eba95, #a0b8a4)",
+          top: "15px",
+          right: "2px",
+          padding: "15px 10px 15px 15px",
+        },
+        offset: {
+          x: 0, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+          y: 50, // vertical axis - can be a number or a string indicating unity. eg: '2em'
+        },
+        onClick: function () {}, // Callback after click
+      }).showToast();
+
       productToless = productList.find(
         (p) =>
           p.ref === +this.parentNode.getElementsByTagName("img")[0].dataset.ref
