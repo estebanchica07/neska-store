@@ -551,7 +551,7 @@ function clickOnOrder() {
     }
   });
 }
-
+//
 function renderProducts(coleccion) {
   coleccion.forEach((product) => {
     tarjetaProducto = `
