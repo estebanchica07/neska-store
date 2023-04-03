@@ -764,10 +764,10 @@ function AddToCart(coleccion, i) {
       }).showToast();
 
       addProductCar(myCarOrder);
+      makeTextToSend(myCarOrder);
       abrirCerrar("", viewProduct, "", "", "");
       openBack();
     }, 700);
-    makeTextToSend(myCarOrder);
     console.log(message);
   });
   closeButton();
