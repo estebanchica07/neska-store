@@ -145,6 +145,7 @@ nav {
 }
 .mi-carrito {
   margin-right: 12px;
+  cursor: default;
 }
 /*Menu en Mobile*/
 .mobile-menu {
@@ -370,6 +371,7 @@ aside#shoppingCartContainer {
   font-size: 18px;
   margin-top: 0;
   margin-bottom: 1px;
+  cursor: default;
 }
 .product-info div p:nth-child(2) {
   font-size: 16px;
@@ -377,6 +379,7 @@ aside#shoppingCartContainer {
   margin-bottom: 0;
   color: var(--very-light-pink);
   align-items: center;
+  cursor: default;
 }
 .product-info div p:nth-child(3) {
   font-size: 14px;
@@ -385,6 +388,7 @@ aside#shoppingCartContainer {
   color: var(--very-light-pink);
   align-items: center;
   font-style: italic;
+  cursor: default;
 }
 
 .product-features {
