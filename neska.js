@@ -561,9 +561,9 @@ function renderProducts(coleccion) {
     }" class="productImage" alt="">
         <div class="product-info">
           <div class="product-features">
-            <p>${formatoMoneda(product.price)}</p>
+          <p>Ref: ${product.ref}</p>
+          <p>${formatoMoneda(product.price)}</p>
             <p>${product.name} en ${product.material}</p>
-            <p>Ref: ${product.ref}</p>
           </div>
         </div>
       </div>
