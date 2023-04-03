@@ -143,7 +143,9 @@ nav {
   margin-bottom: 20px;
   display: inline-block;
 }
-
+.mi-carrito {
+  margin-right: 12px;
+}
 /*Menu en Mobile*/
 .mobile-menu {
   background-color: var(--white);
